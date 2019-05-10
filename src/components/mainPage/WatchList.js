@@ -30,8 +30,11 @@ class WatchList extends Component {
 
     const fetchPrice = () => {
       axios.get(SERVER_URL).then( (results) => {
-        // console.log(results)
-        this.setState({ price: results.data.calculationPrice});
+        if (results.data.calculationPrice === "close" ) {
+          this.setState({ price: results.data.close})
+        } else {
+          this.setState({ price: results.data.calculationPrice})
+        }
       });
     };
     fetchPrice();
