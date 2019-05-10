@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import axios from "axios";
+import './WatchList.css'
 
 const SERVER_URL = "https://api.iextrading.com/1.0/stock/aapl/quote";
 
@@ -11,7 +12,7 @@ class WatchList extends Component {
       symbol: '',
       companyName: '',
       price: '',
-      oscilation: ''
+      changePercent: 0
     };
 
     const fetchSymbol = () => {
@@ -55,17 +56,16 @@ class WatchList extends Component {
 
   render() {
     return(
-      <div>
-        <h1>STOCKS</h1>
+      <div className="watch-list">
 
-        <div>
-          <div>{ this.state.symbol}</div>
-          <div>{ this.state.companyName }</div>
+        <div className="symbol_name">
+          <div className="symbol" >{ this.state.symbol }</div>
+          <div className="name" >{ this.state.companyName }</div>
         </div>
 
-        <div>
-          <div>{ this.state.price }</div>
-          <div>{ this.state.changePercent}</div>
+        <div className="price_percent">
+          <div className="price" >{ this.state.price }</div>
+          <div className="percent" >{ this.state.changePercent.toFixed(2)  }</div>
         </div>
 
       </div>
