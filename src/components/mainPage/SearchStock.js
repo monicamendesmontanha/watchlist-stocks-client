@@ -3,8 +3,6 @@ import axios from 'axios';
 import './SearchStocks.css'
 // import { Link } from 'react-router-dom';
 
-
-
 const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
 
 class SearchStock extends Component {
@@ -43,17 +41,33 @@ class SearchStock extends Component {
     return (
       <div>
 
-          <form className="search_stock" onSubmit={this._handleSubmit}>
-            <input type="search" className="search_input" onChange={this._handleChange} placeholder="name or symbol"/>
-            <input className="submit_input" type="submit" value="search" />
+          <form className="search-stock" onSubmit={this._handleSubmit}>
+            <div className="search-input">
+              <input type="search" onChange={this._handleChange} placeholder="name or symbol"/>
+            </div>
+            <div  className="submit-input" >
+              <input type="submit" value="search" />
+            </div>
           </form>
-          
 
+          {/* <SearchResult results={this.state.results} /> */}
       </div>
     )
   }
 }
 
+// Pass the search results as a props to show on watchlist
 
+// class SearchResult extends Component {
+//   render() {
+//     return (
+//       <ul>
+//         {this.props.results.map(result => (
+//           <li>....</li>
+//         ))}
+//       </ul>
+//     )
+//   }
+// }
 
 export default SearchStock;
