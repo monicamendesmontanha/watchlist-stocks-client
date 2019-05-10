@@ -47,7 +47,7 @@ class SearchStock extends Component {
             <input type="search" className="search_input" onChange={this._handleChange} placeholder="name or symbol"/>
             <input className="submit_input" type="submit" value="search" />
           </form>
-          
+
 
       </div>
     )
