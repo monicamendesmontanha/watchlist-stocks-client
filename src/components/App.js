@@ -1,6 +1,6 @@
 import React from 'react';
-import WatchList from './mainPage/WatchList'
-import Menu from './header/Menu'
+import Menu from './header/Menu';
+import WatchList from './mainPage/WatchList';
 
 function App() {
   return (
