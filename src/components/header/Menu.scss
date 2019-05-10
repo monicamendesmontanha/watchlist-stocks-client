@@ -1,0 +1,104 @@
+header{
+  width: 100%;
+  height: 60px;
+  background-color: grey;
+  h1 {
+    position: fixed;
+    top: 6px;
+    left: 25px;
+    font-size: 20px;
+    font-weight: 900;
+    font-family: sans-serif;
+    text-transform: uppercase;
+  }
+}
+    input, label {
+      position: fixed;
+      top: 18px;
+      right: 40px;
+      height: 20px;
+      width: 20px;
+      z-index: 5;
+      span {
+        background-color: black;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        top: 50%;
+        border-radius: 5px;
+        transition: 1s;
+      }
+      span:first-child {
+        top: 3px;
+      }
+      span:last-child {
+        top: 16px;
+      }
+    }
+    label:hover {
+      cursor: pointer;
+    }
+    input:checked + label {
+      span {
+        opacity: 0;
+        top: 50%;
+      }
+      span:first-child {
+        opacity: 1;
+        transform: rotate(405deg);
+      }
+      span:last-child {
+        opacity: 1;
+        transform: rotate(-405deg);
+      }
+    }
+    input, nav {
+      position: fixed;
+      top: 60px;
+      right: 0;
+      transition: 1s;
+      transition-delay: .5s;
+        ul {
+        list-style-type: none;
+        text-decoration: none;
+        text-align: center;
+
+        right: 20%;
+         li {
+          opacity: 0;
+          transition: .5s;
+          transition-delay: 0s;
+         a {
+           text-align: center;
+             color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-family: sans-serif;
+            display: block;
+            padding: 8px 38px 5px 0;
+            &:hover{
+              color: black;
+              transition: 1s;
+            }
+          }
+        }
+      }
+    }
+    input:checked ~ nav {
+      height: 100%;
+      width: 100%;
+      background-color: grey;
+      transition-delay: 0s;
+       ul {
+        li {
+          opacity: 1;
+          transition-delay: .5s;
+        }
+      }
+    }
+
+
+input[type="checkbox" i] {
+    display: none;
+}

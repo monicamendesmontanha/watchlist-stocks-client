@@ -1,10 +1,12 @@
 import React from 'react';
-import SearchStock from './mainPage/SearchStock'
+import WatchList from './mainPage/WatchList'
+import Menu from './header/Menu'
 
 function App() {
   return (
     <div className="App">
-      <SearchStock />
+      <Menu />
+      <WatchList />
     </div>
   );
 }
