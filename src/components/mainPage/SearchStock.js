@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import './SearchStocks.css'
+import './SearchStocks.css';
 // import { Link } from 'react-router-dom';
 
 const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
@@ -43,10 +43,10 @@ class SearchStock extends Component {
 
           <form className="search-stock" onSubmit={this._handleSubmit}>
             <div className="search-input">
-              <input type="search" onChange={this._handleChange} placeholder="name or symbol"/>
+              <input class="input_field" type="search" onChange={this._handleChange} placeholder="name or symbol"/>
             </div>
-            <div  className="submit-input" >
-              <input type="submit" value="search" />
+            <div>
+              <input class="submit_input" type="submit" value="search" />
             </div>
           </form>
 
