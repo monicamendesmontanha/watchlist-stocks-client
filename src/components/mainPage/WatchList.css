@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
+  margin: 1px 0 3px 20px;
 }
 
 .price_percent {
@@ -22,11 +22,14 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  margin-right: 20px;
 }
 
 .symbol, .price {
   font-size: 20px;
 }
+
+/* Hi Monica!!!! :) :) :)  */
 
 .name, .percent {
   font-size: 14px;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import './SearchStocks.css';
-// import { Link } from 'react-router-dom';
+import svgSprite from './search.svg'
 
 const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
 
@@ -37,16 +37,19 @@ class SearchStock extends Component {
     });
   }
 
+
   render() {
     return (
       <div>
 
           <form className="search-stock" onSubmit={this._handleSubmit}>
             <div className="search-input">
-              <input class="input_field" type="search" onChange={this._handleChange} placeholder="name or symbol"/>
+              <input className="input_field" type="search" onChange={this._handleChange} placeholder="name or symbol"/>
             </div>
             <div>
-              <input class="submit_input" type="submit" value="search" />
+
+              <button className="submit_input" type="submit" value=""><img className="search" src={svgSprite}/></button>
+
             </div>
           </form>
 

@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import './Menu.scss'
+import { css, cx } from 'emotion'
+
+const visibilityStyle = {
+  visibility: 'visible'
+}
 
 class Menu extends Component {
 
+  // changeVisibility(){
+  //   const x = document.getElementById("visible-id");
+  // if (x.style.visibility === "hidden") {
+  //   x.style.visibility = "visible";
+  // } else {
+  //   x.style.visibility = "hidden";
+  // }
+  // }
 
   render() {
     return (
@@ -10,14 +23,14 @@ class Menu extends Component {
         <header>
           <h1>Stocks</h1>
           <input id="burger" type="checkbox" />
-          <label for="burger">
+          <label onClick={this.changeVisibility}
+          id="label-menu" for="burger">
             <span></span>
             <span></span>
             <span></span>
       </label>
-      <nav>
+      <nav id="visible-id" >
   <ul>
-
     <a href="/i" ></a>
     <li><a href="/">App</a></li>
     <li><a href="/menu">Menu</a></li>
