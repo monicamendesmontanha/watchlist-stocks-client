@@ -53,6 +53,7 @@ class WatchList extends Component {
       <div>
         <h1>STOCKS</h1>
 
+
         <div>
           <div>{ this.state.symbol}</div>
           <div>{ this.state.companyName }</div>
