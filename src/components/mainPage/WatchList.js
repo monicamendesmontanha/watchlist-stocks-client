@@ -1,8 +1,9 @@
 import React, { Component }  from 'react';
 import axios from "axios";
 import './WatchList.css'
+import SearchStock from './SearchStock';
 
-const SERVER_URL = "https://api.iextrading.com/1.0/stock/aapl/quote";
+const serverUrl = (stockSymbol) => `https://api.iextrading.com/1.0/stock/${stockSymbol}/quote`;
 
 class WatchList extends Component {
 
@@ -15,37 +16,17 @@ class WatchList extends Component {
       changePercent: 0
     };
 
-    const fetchSymbol = () => {
-      axios.get(SERVER_URL).then( (results) => {
-        this.setState({ symbol: results.data.symbol });
+    const fetchInfo = () => {
+      axios.get(serverUrl('googl')).then( (results) => {
+        this.setState({
+          symbol: results.data.symbol,
+          companyName: results.data.companyName,
+          price: results.data.calculationPrice === "close" ? results.data.close : results.data.calculationPrice,
+          changePercent: results.data.changePercent
+        });
       });
     };
-    fetchSymbol();
-
-    const fetchCompanyName = () => {
-      axios.get(SERVER_URL).then( (results) => {
-        this.setState({ companyName: results.data.companyName});
-      });
-    };
-    fetchCompanyName();
-
-    const fetchPrice = () => {
-      axios.get(SERVER_URL).then( (results) => {
-        if (results.data.calculationPrice === "close" ) {
-          this.setState({ price: results.data.close})
-        } else {
-          this.setState({ price: results.data.calculationPrice})
-        }
-      });
-    };
-    fetchPrice();
-
-    const fetchChangePercent = () => {
-      axios.get(SERVER_URL).then( (results) => {
-        this.setState({ changePercent: results.data.changePercent});
-      });
-    };
-    fetchChangePercent();
+    fetchInfo();
 
   }
 
@@ -56,6 +37,8 @@ class WatchList extends Component {
 
   render() {
     return(
+      <>
+      <SearchStock />
       <div className="watch-list">
 
         <div className="symbol_name">
@@ -69,6 +52,7 @@ class WatchList extends Component {
         </div>
 
       </div>
+      </>
     );
   }
 }

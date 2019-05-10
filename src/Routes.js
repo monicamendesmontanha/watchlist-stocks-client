@@ -12,7 +12,7 @@ import Login from './components/loginPage/Login';
 import ActionReload from './components/mainPage/ActionReload';
 import SearchStock from './components/mainPage/SearchStock';
 import WatchList from './components/mainPage/WatchList';
-import SignUp from './components/SignupPage/Signup';
+import SignUp from './components/signupPage/Signup';
 
 
 
