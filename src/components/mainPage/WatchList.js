@@ -48,11 +48,15 @@ class WatchList extends Component {
 
   }
 
+  // TODO:
+  // Get and show the logo' company
+  // Option to delete the stock on the watchlist of current_user
+  // Link to go to details of each company
+
   render() {
     return(
       <div>
         <h1>STOCKS</h1>
-
 
         <div>
           <div>{ this.state.symbol}</div>
