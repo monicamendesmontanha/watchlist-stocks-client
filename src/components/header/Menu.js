@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import './Menu.scss'
 import { css, cx } from 'emotion'
 
@@ -21,6 +21,8 @@ class Menu extends Component {
     return (
       <div >
         <header>
+          <div className="header-container">
+            </div>
           <h1>Stocks</h1>
           <input id="burger" type="checkbox" />
           <label onClick={this.changeVisibility}
@@ -29,6 +31,7 @@ class Menu extends Component {
             <span></span>
             <span></span>
       </label>
+
       <nav id="visible-id" >
   <ul>
     <a href="/i" ></a>
