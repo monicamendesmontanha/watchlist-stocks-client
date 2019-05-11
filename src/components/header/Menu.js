@@ -1,21 +1,11 @@
-  import React, { Component } from 'react';
-import './Menu.scss'
-import { css, cx } from 'emotion'
+import React, { Component } from 'react';
 
-const visibilityStyle = {
-  visibility: 'visible'
-}
+import './Menu.scss'
+//import { css, cx } from 'emotion'
+
+
 
 class Menu extends Component {
-
-  // changeVisibility(){
-  //   const x = document.getElementById("visible-id");
-  // if (x.style.visibility === "hidden") {
-  //   x.style.visibility = "visible";
-  // } else {
-  //   x.style.visibility = "hidden";
-  // }
-  // }
 
   render() {
     return (
@@ -34,7 +24,6 @@ class Menu extends Component {
 
       <nav id="visible-id" >
   <ul>
-    <a href="/i" ></a>
     <li><a href="/">App</a></li>
     <li><a href="/menu">Menu</a></li>
     <li><a href="/user">User</a></li>

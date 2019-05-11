@@ -5,37 +5,37 @@ import svgSprite from './search.svg'
 
 const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
 
-class SearchStock extends Component {
+  class SearchStock extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      name: '',
-      symbol: '',
-      results: []
-    };
-    this._handleChange = this._handleChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
+    constructor() {
+      super();
+      this.state = {
+        name: '',
+        symbol: '',
+        results: []
+      };
+      this._handleChange = this._handleChange.bind(this);
+      this._handleSubmit = this._handleSubmit.bind(this);
+    }
 
-  _handleChange(e) {
-    // e.preventDefault();
-    this.setState({name: e.target.value, symbol: e.target.value});
-  }
+    _handleChange(e) {
+        // e.preventDefault();
+        this.setState({name: e.target.value, symbol: e.target.value});
+    }
 
-  _handleSubmit(e) {
-    e.preventDefault();
-    let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
-    axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
-      console.table(results.data);
+    _handleSubmit(e) {
+      e.preventDefault();
+      let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
+      axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
+        console.table(results.data);
 
-      let searchResults = results.data
+        let searchResults = results.data
 
-      this.setState( {
-        results: searchResults
-      })
-    });
-  }
+        this.setState( {
+          results: searchResults
+        })
+      });
+    }
 
 
   render() {
@@ -48,7 +48,7 @@ class SearchStock extends Component {
             </div>
             <div>
 
-              <button className="submit_input" type="submit" value=""><img className="search" src={svgSprite}/></button>
+              <button className="submit_input" type="submit" value=""><img className="search" src={svgSprite} alt=" " /></button>
 
             </div>
           </form>
