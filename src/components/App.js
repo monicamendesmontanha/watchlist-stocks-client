@@ -7,6 +7,8 @@ import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 // import ChartTest from './infoPage/ChartTest'
 
+const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
+
 const serverTop10Companies = companies =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
 const serverPriceUrl = stockSymbol =>
@@ -32,11 +34,34 @@ class App extends React.Component {
         changePercent: 0
       },
       stocks: [],
-      page: "LIST" // LIST || DETAILS
+      page: "LIST", // LIST || DETAILS
+      symbol: '',
+      results: []
     };
 
     this.selectStock = this.selectStock.bind(this);
     this.backToList = this.backToList.bind(this);
+
+    this._handleChange = this._handleChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+  }
+
+  _handleChange(e) {
+    this.setState({symbol: e.target.value});
+  }
+
+  _handleSubmit(e) {
+    e.preventDefault();
+    let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
+    axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
+      console.table(results.data);
+
+      let searchResults = results.data
+
+      this.setState( {
+        results: searchResults
+      })
+    });
   }
 
   backToList() {
@@ -91,7 +116,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <SearchStock />
+        <SearchStock _handleChange={this._handleChange} _handleSubmit={this._handleSubmit}/>
 
         {this.state.page === "LIST" ? (
           <WatchList
