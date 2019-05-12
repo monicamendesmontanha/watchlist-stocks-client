@@ -43,7 +43,7 @@ class App extends React.Component {
     this.backToList = this.backToList.bind(this);
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
+    this.addStockToList = this.addStockToList.bind(this);
   }
 
   getValueFromInput(e) {
@@ -51,7 +51,7 @@ class App extends React.Component {
     this.setState({symbol: e.target.value});
   }
 
-  _handleSubmit(e) {
+  addStockToList(e) {
     e.preventDefault();
     let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
     axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
@@ -117,7 +117,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <SearchStock getValueFromInput={this.getValueFromInput} _handleSubmit={this._handleSubmit}/>
+        <SearchStock getValueFromInput={this.getValueFromInput} addStockToList={this.addStockToList}/>
 
         {this.state.page === "LIST" ? (
           <WatchList

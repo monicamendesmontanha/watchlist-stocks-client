@@ -2,10 +2,10 @@ import React from "react";
 import "./SearchStocks.css";
 import svgSprite from "./search.svg";
 
-const SearchStock = ({ getValueFromInput, _handleSubmit, }) => {
+const SearchStock = ({ getValueFromInput, addStockToList, }) => {
   return (
     <div>
-      <form className="search-stock" onSubmit={_handleSubmit}>
+      <form className="search-stock" onSubmit={addStockToList}>
         <div className="search-input">
           <input
             className="input_field"
