@@ -44,7 +44,7 @@ const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
 
           <form className="search-stock" onSubmit={this._handleSubmit}>
             <div className="search-input">
-              <input className="input_field" type="search" onChange={this._handleChange} placeholder="name or symbol"/>
+              <input className="input_field" type="search" onChange={this._handleChange} placeholder="symbol"/>
             </div>
             <div>
 
