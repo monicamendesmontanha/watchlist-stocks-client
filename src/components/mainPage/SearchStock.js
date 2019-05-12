@@ -24,18 +24,4 @@ const SearchStock = ({ getValueFromInput, addStockToList, }) => {
   );
 };
 
-// Pass the search results as a props to show on watchlist
-
-// class SearchResult extends Component {
-//   render() {
-//     return (
-//       <ul>
-//         {this.props.results.map(result => (
-//           <li>....</li>
-//         ))}
-//       </ul>
-//     )
-//   }
-// }
-
 export default SearchStock;
