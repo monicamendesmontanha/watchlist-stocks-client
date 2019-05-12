@@ -55,12 +55,10 @@ class App extends React.Component {
     e.preventDefault();
     let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
     axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
-      console.table(results.data);
-
-      let searchResults = results.data
+      const stock = results.data;
 
       this.setState( {
-        results: searchResults
+        stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
       })
     });
   }
@@ -117,14 +115,16 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <SearchStock getValueFromInput={this.getValueFromInput} addStockToList={this.addStockToList}/>
 
         {this.state.page === "LIST" ? (
-          <WatchList
-            stocks={this.state.stocks}
-            page={this.state.page}
-            selectStock={this.selectStock}
-          />
+          <>
+            <SearchStock getValueFromInput={this.getValueFromInput} addStockToList={this.addStockToList}/>
+            <WatchList
+              stocks={this.state.stocks}
+              page={this.state.page}
+              selectStock={this.selectStock}
+            />
+          </>
         ) : (
           <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} />
         )}
