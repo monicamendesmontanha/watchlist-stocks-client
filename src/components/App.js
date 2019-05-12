@@ -1,8 +1,8 @@
 import React from "react";
+import axios from "axios";
 import Menu from "./header/Menu";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
-import axios from "axios";
 import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 // import ChartTest from './infoPage/ChartTest'
@@ -22,7 +22,7 @@ const StockDetailsPage = ({ selectedStock, backToList }) => (
   <>
     <button onClick={backToList}>Back to list</button>
     <StockDetails stock={selectedStock} />
-    <StockChart stock={selectedStock} />
+    {/* <StockChart stock={selectedStock} /> */}
   </>
 );
 
@@ -133,5 +133,4 @@ class App extends React.Component {
   }
 }
 
-// <ChartTest />
 export default App;
