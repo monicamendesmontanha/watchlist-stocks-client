@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import svgSprite from '../mainPage/search.svg'
-import Highcharts from 'highcharts';
+
 
 
 class StockChart extends Component {
@@ -16,8 +16,6 @@ class StockChart extends Component {
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-
-
 //_____________________________________Data Retreival Blocks ___________________________________________
   //_____Handles the input from the form --- when submitted it is sent to the state ______
   _handleChange(e) {
@@ -26,13 +24,17 @@ class StockChart extends Component {
   }
   //_____Handles the input from the form --- when submitted it is sent to the state ______
   _handleSubmit(e) {
+
     // grabbig api key
     const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
     //chart URL
     const CHART_URL = `https://cloud.iexapis.com/stable/stock/${this.state.TIKR}/chart?token=${API_KEY}`;
+
     axios.get(CHART_URL).then((results) => {
       console.table(results.data);
       let chartData = results.data
+
+
       this.setState( {
       chartResults: chartData
       })
@@ -40,7 +42,7 @@ class StockChart extends Component {
   }
   //_____________________________________Data Retreival Block End ___________________________________________
 
-//_____________Render ______________________  
+//_____________Render ______________________
   render() {
     return (
       <div>
@@ -58,7 +60,4 @@ class StockChart extends Component {
 
   //--------------Test for Chart Data----------------
   // <p>{this.state.chartResults}</p>
-  //--------------Test for Chart Data----------------
-
-
 export default StockChart;

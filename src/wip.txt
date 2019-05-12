@@ -1,0 +1,14 @@
+// this._handleSubmit = this._handleSubmit.bind(this);
+//_____Handles the input from the form --- when submitted it is sent to the state ______
+// _handleSubmit(e) {
+//   this.setState({TIKR: e.target.value});
+//
+// }
+//_____________________________________Data Retreival Block End ___________________________________________
+// this._handleSubmit = this._handleSubmit.bind(this);
+//_____Handles the input from the form --- when submitted it is sent to the state ______
+// _handleSubmit(e) {
+//   this.setState({TIKR: e.target.value});
+//
+// }
+//_____________________________________Data Retreival Block End ___________________________________________
