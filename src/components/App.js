@@ -4,10 +4,8 @@ import Menu from "./header/Menu";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
-import StockChart from "./infoPage/StockChart";
+// import StockChart from "./infoPage/StockChart";
 // import ChartTest from './infoPage/ChartTest'
-
-const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
 
 const serverTop10Companies = companies =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
@@ -47,37 +45,16 @@ class App extends React.Component {
   }
 
   getValueFromInput(e) {
-    console.log(e.target.value)
+    // console.log(e.target.value)
     this.setState({symbol: e.target.value});
   }
 
-  addStockToList(e) {
-    e.preventDefault();
-    let STOCK_URL = `https://api.iextrading.com/1.0/stock/${this.state.symbol}/quote`
-    axios.get(STOCK_URL, {heders: API_KEY}).then((results) => {
-      const stock = results.data;
+  async fetchStockDetailsFromAPI(symbol) {
+    const price = await axios.get(serverPriceUrl(symbol));
+    const quote = await axios.get(serverQuoteUrl(symbol));
+    const stats = await axios.get(serverStatsUrl(symbol));
 
-      this.setState( {
-        stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
-      })
-    });
-  }
-
-  backToList() {
-    this.setState({
-      page: "LIST",
-      selectedStock: null
-    });
-  }
-
-  async selectStock(stock) {
-    const price = await axios.get(serverPriceUrl(stock.symbol));
-    const quote = await axios.get(serverQuoteUrl(stock.symbol));
-    const stats = await axios.get(serverStatsUrl(stock.symbol));
-
-    // console.log(quote)
-
-    const retrievedStock = {
+    return {
       price: price.data,
 
       symbol: quote.data.symbol,
@@ -95,11 +72,31 @@ class App extends React.Component {
       returnOnEquity: stats.data.returnOnEquity,
       ttmEPS: stats.data.ttmEPS
     };
-    // console.log(retrievedStock);
+  }
+
+  async addStockToList(e) {
+    e.preventDefault();
+
+    const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
+
+    this.setState( {
+      stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
+    });
+  }
+
+  backToList() {
+    this.setState({
+      page: "LIST",
+      selectedStock: null
+    });
+  }
+
+  async selectStock(symbol) {
+    const selectedStock = await this.fetchStockDetailsFromAPI(symbol);
 
     this.setState({
       page: "DETAILS",
-      selectedStock: retrievedStock
+      selectedStock
     });
   }
 

@@ -8,7 +8,7 @@ const WatchList = props => (
         <div
           key={stock.symbol}
           className="item"
-          onClick={() => props.selectStock(stock)}
+          onClick={() => props.selectStock(stock.symbol)}
         >
           <div className="symbol_name">
             <div className="symbol">{stock.symbol}</div>
