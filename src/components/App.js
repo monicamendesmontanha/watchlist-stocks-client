@@ -42,11 +42,12 @@ class App extends React.Component {
     this.selectStock = this.selectStock.bind(this);
     this.backToList = this.backToList.bind(this);
 
-    this._handleChange = this._handleChange.bind(this);
+    this.getValueFromInput = this.getValueFromInput.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
   }
 
-  _handleChange(e) {
+  getValueFromInput(e) {
+    console.log(e.target.value)
     this.setState({symbol: e.target.value});
   }
 
@@ -116,7 +117,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Menu />
-        <SearchStock _handleChange={this._handleChange} _handleSubmit={this._handleSubmit}/>
+        <SearchStock getValueFromInput={this.getValueFromInput} _handleSubmit={this._handleSubmit}/>
 
         {this.state.page === "LIST" ? (
           <WatchList

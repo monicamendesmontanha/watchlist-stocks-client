@@ -2,7 +2,7 @@ import React from "react";
 import "./SearchStocks.css";
 import svgSprite from "./search.svg";
 
-const SearchStock = ({ _handleChange, _handleSubmit, }) => {
+const SearchStock = ({ getValueFromInput, _handleSubmit, }) => {
   return (
     <div>
       <form className="search-stock" onSubmit={_handleSubmit}>
@@ -10,7 +10,7 @@ const SearchStock = ({ _handleChange, _handleSubmit, }) => {
           <input
             className="input_field"
             type="search"
-            onChange={_handleChange}
+            onChange={getValueFromInput}
             placeholder="symbol"
           />
         </div>
