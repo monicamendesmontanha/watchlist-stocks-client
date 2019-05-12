@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./WatchList.css";
 import StockDetails from "../infoPage/StockDetails";
+import StockChart from '../infoPage/StockChart'
 // import SearchStock from './SearchStock';
 
 const serverTop10Companies = (companies) =>
@@ -60,7 +61,7 @@ class WatchList extends Component {
       returnOnEquity: stats.data.returnOnEquity,
       ttmEPS: stats.data.ttmEPS
     };
-    console.log(retrievedStock);
+    // console.log(retrievedStock);
 
     this.setState({
       page: "DETAILS",
@@ -107,6 +108,7 @@ class WatchList extends Component {
           <>
             <button onClick={this.backToList}>Back to list</button>
             <StockDetails stock={this.state.selectedStock} />
+            <StockChart stock={this.state.selectedStock} />
           </>
         )}
       </>
