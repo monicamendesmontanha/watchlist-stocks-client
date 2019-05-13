@@ -69,7 +69,8 @@ header{
     }
     #visible-id{
   /*     visibility: hidden; */
-z-index: -100;
+z-index: 100;
+background-color: aliceblue;
     }
     #burger, nav {
       position: fixed;
@@ -126,4 +127,8 @@ z-index: -100;
 
 #burger[type="checkbox" i] {
     display: none;
+}
+
+.menu {
+  background-color: blue;
 }
