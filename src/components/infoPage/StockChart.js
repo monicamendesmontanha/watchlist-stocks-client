@@ -1,63 +1,73 @@
 import React, { Component } from 'react';
 import axios from "axios";
 import svgSprite from '../mainPage/search.svg'
+import {Bar, Line, Pie} from 'react-chartjs-2';
 
-
-
-class StockChart extends Component {
-  //________________Constructor _______________________
-  constructor() {
-    super();
+class StockChart extends Component{
+  constructor(props){
+    super(props);
     this.state = {
-      TIKR: '',
-      chartResults: []
-    };
-    this._handleChange = this._handleChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
+      chartData:props.chartData
+    }
   }
 
-//_____________________________________Data Retreival Blocks ___________________________________________
-  //_____Handles the input from the form --- when submitted it is sent to the state ______
-  _handleChange(e) {
-      // e.preventDefault();
-      this.setState({TIKR: e.target.value});
+  static defaultProps = {
+    displayTitle:true,
+    displayLegend: true,
+    legendPosition:'right',
+    location:'City'
   }
-  //_____Handles the input from the form --- when submitted it is sent to the state ______
-  _handleSubmit(e) {
 
-    // grabbig api key
-    const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
-    //chart URL
-    const CHART_URL = `https://cloud.iexapis.com/stable/stock/${this.state.TIKR}/chart?token=${API_KEY}`;
-
-    axios.get(CHART_URL).then((results) => {
-      console.table(results.data);
-      let chartData = results.data
-
-
-      this.setState( {
-      chartResults: chartData
-      })
-    });
-  }
-  //_____________________________________Data Retreival Block End ___________________________________________
-
-//_____________Render ______________________
-  render() {
+  render(){
     return (
-      <div>
-        <form className="chart-form" onSubmit={this._handleSubmit}>
-            <input className="input_field" type="search" onChange={this._handleChange} placeholder="Chart Search Test."/>
-          <div>
-            <button className="submit_input" type="submit" value=""><img className="search" src={svgSprite} alt=" " /></button>
-          </div>
-        </form>
+      <div className="chart">
+        <Bar
+          data={this.state.chartData}
+          options={{
+            title:{
+              display:this.props.displayTitle,
+              text:'Largest Cities In '+this.props.location,
+              fontSize:25
+            },
+            legend:{
+              display:this.props.displayLegend,
+              position:this.props.legendPosition
+            }
+          }}
+        />
+
+        <Line
+          data={this.state.chartData}
+          options={{
+            title:{
+              display:this.props.displayTitle,
+              text:'Largest Cities In '+this.props.location,
+              fontSize:25
+            },
+            legend:{
+              display:this.props.displayLegend,
+              position:this.props.legendPosition
+            }
+          }}
+        />
+
+        <Pie
+          data={this.state.chartData}
+          options={{
+            title:{
+              display:this.props.displayTitle,
+              text:'Largest Cities In '+this.props.location,
+              fontSize:25
+            },
+            legend:{
+              display:this.props.displayLegend,
+              position:this.props.legendPosition
+            }
+          }}
+        />
       </div>
     )
   }
 }
-//_____________Render End ______________________
 
-  //--------------Test for Chart Data----------------
-  // <p>{this.state.chartResults}</p>
 export default StockChart;

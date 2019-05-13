@@ -4,6 +4,8 @@ import Menu from "./header/Menu";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
+import BarChart from "./infoPage/barChart";
+
 // import StockChart from "./infoPage/StockChart";
 // import ChartTest from './infoPage/ChartTest'
 
@@ -16,10 +18,11 @@ const serverQuoteUrl = stockSymbol =>
 const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
 
-const StockDetailsPage = ({ selectedStock, backToList }) => (
+const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <button onClick={backToList}>Back to list</button>
     <StockDetails stock={selectedStock} />
+    <BarChart symbol={symbol}/>
     {/* <StockChart stock={selectedStock} /> */}
   </>
 );
@@ -33,7 +36,7 @@ class App extends React.Component {
       },
       stocks: [],
       page: "LIST", // LIST || DETAILS
-      symbol: '',
+      symbol: 'aapl',
       results: []
     };
 
@@ -123,8 +126,10 @@ class App extends React.Component {
             />
           </>
         ) : (
-          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} />
+          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} symbol={this.state.symbol}/>
         )}
+
+
       </div>
     );
   }
