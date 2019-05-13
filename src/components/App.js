@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Menu from "./header/Menu";
+import MenuDropdown from "./header/Menu";
+import User from "./header/User";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
@@ -27,21 +28,58 @@ const StockDetailsPage = ({ selectedStock, backToList }) => (
 class App extends React.Component {
   constructor() {
     super();
+
+    const currentUser = {
+      menu_icon: "menu_icon",
+      gravata: "gravata",
+      name: "Monica",
+      email: "monica@email.com"
+    };
+
     this.state = {
       selectedStock: {
         changePercent: 0
       },
       stocks: [],
       page: "LIST", // LIST || DETAILS
+
       symbol: '',
-      results: []
+      results: [],
+
+      menuVisible: false,
+      currentUser: currentUser
     };
+
+    this.logout = this.logout.bind(this);
+    this.login = this.login.bind(this);
 
     this.selectStock = this.selectStock.bind(this);
     this.backToList = this.backToList.bind(this);
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
+  }
+
+  clickMenuDropDown() {
+    this.setState({
+      menuVisible: !this.state.menuVisible
+    });
+  }
+
+  logout() {
+    console.log('logging out');
+    this.setState({ currentUser: null });
+  }
+
+  login() {
+    console.log('logging in');
+    const currentUser = {
+      menu_icon: "menu_icon",
+      gravata: "gravata",
+      name: "Monica",
+      email: "monica@email.com"
+    };
+    this.setState({ currentUser: currentUser });
   }
 
   getValueFromInput(e) {
@@ -105,13 +143,17 @@ class App extends React.Component {
       serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
     );
 
-    this.setState({ stocks: result.data });
+
+    this.setState({
+      stocks: result.data,
+     });
+
   }
 
   render() {
     return (
       <div className="App">
-        <Menu />
+        <MenuDropdown user={this.state.currentUser} onLogin={this.login} onLogout={this.logout}/>
 
         {this.state.page === "LIST" ? (
           <>

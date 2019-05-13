@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import MenuDropdown from "./Menu";
 
-class User extends Component {
-  render() {
-    return (
-      <h1>User</h1>
-    );
-  }
-}
+const User = props => {
+  return (
+    <div className="App">
+      <MenuDropdown
+        user={props.currentUser}
+        onLogout={props.logout}
+        onLogin={props.login}
+      />
+    </div>
+  )
+};
+
 
 export default User;
