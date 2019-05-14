@@ -1,63 +1,68 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import axios from "axios";
-import svgSprite from '../mainPage/search.svg'
-
-
+import { Line } from 'react-chartjs-2';
 
 class StockChart extends Component {
-  //________________Constructor _______________________
-  constructor() {
-    super();
+
+  constructor(props) {
+    super(props);
     this.state = {
-      TIKR: '',
-      chartResults: []
-    };
-    this._handleChange = this._handleChange.bind(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
+      period: '1y',
+      chartData: {}
+    }
   }
-
-//_____________________________________Data Retreival Blocks ___________________________________________
-  //_____Handles the input from the form --- when submitted it is sent to the state ______
-  _handleChange(e) {
-      // e.preventDefault();
-      this.setState({TIKR: e.target.value});
+  componentWillMount(){
+      this.getChartData();
+    }
+  stock_period_url = (symbol, period) => {
+    return `https://api.iextrading.com/1.0/stock/${symbol}/chart/${period}`;
   }
-  //_____Handles the input from the form --- when submitted it is sent to the state ______
-  _handleSubmit(e) {
-
-    // grabbig api key
-    const API_KEY = `pk_4b310245e2ee4af09ad1647819bdc6a5`;
-    //chart URL
-    const CHART_URL = `https://cloud.iexapis.com/stable/stock/${this.state.TIKR}/chart?token=${API_KEY}`;
-
-    axios.get(CHART_URL).then((results) => {
-      console.table(results.data);
-      let chartData = results.data
-
-
-      this.setState( {
-      chartResults: chartData
-      })
+  setPeriod = async e => {
+    e.preventDefault();
+    await this.setState({
+      period: e.target.value
     });
+    // console.log(this.state.period);
+    this.getChartData();
   }
-  //_____________________________________Data Retreival Block End ___________________________________________
-
-//_____________Render ______________________
+  getChartData(){
+    axios.get(this.stock_period_url(this.props.symbol, this.state.period)).then((results) => {
+      const {data} = results;
+      // console.log(data);
+      const samples = data.map(value=> value.high);
+      const dates = data.map(value=>value.date);
+      // this.setState({chartData: results});
+      this.setState({
+        chartData:{
+          labels: dates,
+          datasets:[
+            {
+              label:'High Price',
+              data: samples ,
+              backgroundColor:[
+                // 'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                // 'rgba(255, 206, 86, 0.6)',
+                // 'rgba(75, 192, 192, 0.6)',
+                // 'rgba(153, 102, 255, 0.6)',
+                // 'rgba(255, 159, 64, 0.6)',
+                // 'rgba(255, 99, 132, 0.6)'
+              ]
+            }
+          ]
+        }});
+      // console.log({results})
+    });
+  };
   render() {
+    const periods = ['1d', '1m', '3m', '6m', '1y', '2y', '5y'];
     return (
-      <div>
-        <form className="chart-form" onSubmit={this._handleSubmit}>
-            <input className="input_field" type="search" onChange={this._handleChange} placeholder="Chart Search Test."/>
-          <div>
-            <button className="submit_input" type="submit" value=""><img className="search" src={svgSprite} alt=" " /></button>
-          </div>
-        </form>
-      </div>
+      <>
+      {periods.map(period => (<button onClick={this.setPeriod} value={period}>{period}</button>))}
+      <Line data={this.state.chartData} />
+      </>
     )
   }
 }
-//_____________Render End ______________________
 
-  //--------------Test for Chart Data----------------
-  // <p>{this.state.chartResults}</p>
 export default StockChart;
