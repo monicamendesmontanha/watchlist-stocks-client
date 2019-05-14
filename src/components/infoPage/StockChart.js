@@ -76,11 +76,17 @@ class BarChart extends Component {
       <>
         <div className="chart-container">
           {periods.map(period => (
-            <button onClick={this.setPeriod} value={period}>
+            <button
+              className="period-buttons"
+              onClick={this.setPeriod}
+              value={period}
+            >
               {period}
             </button>
           ))}
-          <div>Period has been set to: {this.state.period}</div>
+          <div className="current-period">
+            Current Period: {this.state.period}
+          </div>
           <Line data={this.state.chartData} />
         </div>
       </>

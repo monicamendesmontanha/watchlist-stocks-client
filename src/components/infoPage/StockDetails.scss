@@ -46,7 +46,26 @@ p {
 }
 /* -----------------------------MOBILE------------------------------ */
 //mobile
+/* ========--=-======single line========--=-======*/
+/* .stock-details {
+  margin-left: 7%;
+  display: block;
+}
+
+p {
+  display: block;
+} */
+/* ========--=-======single line========--=-======*/
 @include mediaSm {
+  .stock-details {
+    margin-left: 7%;
+    display: block;
+  }
+}
+
+p {
+  margin: 10px;
+  display: block;
 }
 
 @include mediaMd {
