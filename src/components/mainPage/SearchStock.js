@@ -7,7 +7,7 @@ const SearchStock = ({ getValueFromInput, addStockToList }) => {
     <div>
       <form className="search-stock" onSubmit={addStockToList}>
         <div className="search-input">
-          <div class="cursor">
+          <div className="cursor">
             <input
               className="input_field"
               type="search"

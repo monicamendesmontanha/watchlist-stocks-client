@@ -1,5 +1,6 @@
+@import "../../config";
 .item {
-  border-top: 2px solid rgb(221, 221, 221);
+  border-top: 2px solid $light-grey;
   width: 100%;
   margin: 0 auto;
   display: flex;

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import svgSprite from "../mainPage/search.svg";
 import { Bar, Line, Pie } from "react-chartjs-2";
 import "./StockChart.scss";
 class BarChart extends Component {

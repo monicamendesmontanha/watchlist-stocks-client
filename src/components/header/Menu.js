@@ -44,7 +44,9 @@ const MenuDropdown = props => {
             ) : null}
           </>
         ) : (
-          <button onClick={props.onLogin}>Login</button> // once the user goes to log in, there it can go to signup
+          <button className="login-button" onClick={props.onLogin}>
+            Login
+          </button> // once the user goes to log in, there it can go to signup
         )}
       </header>
     </div>
