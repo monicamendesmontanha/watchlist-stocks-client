@@ -1,79 +1,51 @@
 import React, { useState } from "react";
-
+import logo from "./stocklogo.svg";
+import gravexample from "./grav.png";
 import "./Menu.scss";
-// import { css, cx } from 'emotion'
-
-// class Menu extends Component {
-
-//   render() {
-//     return (
-//       <div >
-//         <header>
-//           <div className="header-container">
-//             </div>
-//           <h1>Stocks</h1>
-//           <input id="burger" type="checkbox" />
-//      <label onClick={this.changeVisibility}
-//           id="label-menu" for="burger">
-//             <span></span>
-//             <span></span>
-//             <span></span>
-//       </label>
-
-//       <nav id="visible-id" >
-//   <ul>
-//     <li><a href="/">App</a></li>
-//     <li><a href="/menu">Menu</a></li>
-//     <li><a href="/user">User</a></li>
-//     <li><a href="/actionhome">ActionHome</a></li>
-//     <li><a href="/stockchart">StockChart</a></li>
-//     <li><a href="/stockdetails">StockDetails</a></li>
-//     <li><a href="/stockprice">StockPrice</a></li>
-//     <li><a href="/login">Login</a></li>
-//     <li><a href="/actionreload">ActionReload</a></li>
-//     <li><a href="/searchstock">SearchStock</a></li>
-//     <li><a href="/watchlist">WatchList</a></li>
-//     <li><a href="/signup">SignUp</a></li>
-//   </ul>
-// </nav>
-//       </header>
-//       </div>
-//     );
-//   }
-// }
-
-// ================================================
-// LUKE CSS
-// ================================================
-
 
 const MenuDropdown = props => {
   const [menuVisible, setMenuVisible] = useState(false);
   return (
     <div className="menu">
       <header>
-        <h1>Stocks</h1>
-        {props.user ? (
-          <>
-            <span onClick={() => setMenuVisible(!menuVisible)}>
-              {props.user.menu_icon}
-            </span>
-            {menuVisible ? (
-              <>
-                <p>{props.user.gravata}</p>
-                <nav id="visible-id">
-                  <p>{props.user.name}</p>
-                  <button onClick={props.onLogout}>Logout</button>
-                </nav>
-              </>
-            ) : null}
-          </>
-        ) : (
-          <button onClick={props.onLogin}>Login</button> // once the user goes to log in, there it can go to signup
-        )}
+        <img className="logo" src={logo} alt=" " />
+        <div className="header-bar">
+          <p className="signed-in-user-gravatar"> </p>
+          {props.user ? (
+            <>
+              <img className="gravatar" src={gravexample} alt=" " />
+              <input id="burger" type="checkbox" />
+              <label
+                id="label-menu"
+                for="burger"
+                onClick={() => setMenuVisible(!menuVisible)}
+              >
+                <span className="nav-line" />
+                <span className="nav-line" />
+                <span className="nav-line" />
+              </label>
+
+              {menuVisible ? (
+                <>
+                  <nav id="drop-down">
+                    <div className="nav-item">Account</div>
+                    <div className="nav-item">{props.user.name}</div>
+                    <button className="nav-item" onClick={props.onLogout}>
+                      Logout
+                    </button>
+                  </nav>
+                </>
+              ) : null}
+            </>
+          ) : (
+            <button onClick={props.onLogin}>Login</button> // once the user goes to log in, there it can go to signup
+          )}
+        </div>
       </header>
     </div>
   );
 };
 
 export default MenuDropdown;
+
+// <p className="user-gravatar">{props.user.gravata}</p>
