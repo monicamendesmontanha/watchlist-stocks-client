@@ -5,7 +5,10 @@ import User from "./header/User";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
-import StockChart from "./infoPage/StockChart";
+import BarChart from "./infoPage/barChart";
+
+// import StockChart from "./infoPage/StockChart";
+// import ChartTest from './infoPage/ChartTest'
 
 const serverTop10Companies = (companies) =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
@@ -18,11 +21,12 @@ const serverStatsUrl = (stockSymbol) =>
 const serverPeriodUrl = (stockSymbol, period) =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/chart/${period}`;
 
-const StockDetailsPage = ({ selectedStock, backToList }) => (
+const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <button onClick={backToList}>Back to list</button>
     <StockDetails stock={selectedStock} />
-    <StockChart stock={selectedStock} />
+    <BarChart symbol={symbol} />
+    {/* <StockChart stock={selectedStock} /> */}
   </>
 );
 
@@ -139,7 +143,8 @@ class App extends React.Component {
 
     this.setState({
       page: "DETAILS",
-      selectedStock
+      selectedStock,
+      symbol
     });
   }
 
@@ -210,7 +215,7 @@ class App extends React.Component {
             />
           </>
         ) : (
-          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList}/>
+          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} symbol={this.state.symbol} />
         )}
       </div>
     );
