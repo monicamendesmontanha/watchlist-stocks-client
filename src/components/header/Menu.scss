@@ -14,7 +14,8 @@ header {
   background-color: rgb(181, 181, 181);
   .logo {
     margin-top: 5px;
-    margin-left: 40%;
+    margin-left: 45%;
+    justify-content: center;
     width: 70px;
   }
   .gravatar {
@@ -33,7 +34,7 @@ header {
   width: 100%;
   background-color: rgba($nav-color, 0.8);
   text-align: center;
-  transition: width 5s;
+
   .nav-item {
     &:hover {
       color: white;
@@ -42,6 +43,11 @@ header {
 }
 
 @include mediaSm {
+  .logo {
+    margin-left: 40% !important;
+  }
+  body {
+  }
 }
 
 @include mediaMd {

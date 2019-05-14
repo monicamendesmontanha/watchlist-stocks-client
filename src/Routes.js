@@ -9,7 +9,7 @@ import StockDetails from "./components/infoPage/StockDetails";
 import Login from "./components/loginPage/Login";
 import SearchStock from "./components/mainPage/SearchStock";
 import WatchList from "./components/mainPage/WatchList";
-import SignUp from "./components/signupPage/Signup";
+import SignUp from "./components/SignupPage/signup";
 
 const Routes = (
   <Router>
