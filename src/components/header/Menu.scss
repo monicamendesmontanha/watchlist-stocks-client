@@ -1,134 +1,98 @@
+//importing the config partial -------see _config for options
+@import "../../config";
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
+//Variables
+$nav-color: rgb(181, 181, 181);
 
-header{
-  width: 100%;
-  height: 60px;
-  background-color: grey;
-.header-container{
-  width: 100%;
-  height: 60px;
-  background-color: rgb(205, 203, 255);
-  position: fixed;
-
+body {
+  font-family: "Varela Round", sans-serif;
 }
-  h1 {
-    position: fixed;
-    top: 6px;
-    left: 25px;
-    font-size: 20px;
-    font-weight: 900;
-    font-family: sans-serif;
-    text-transform: uppercase;
+header {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(181, 181, 181);
+  .logo {
+    margin-top: 5px;
+    margin-left: 40%;
+    width: 70px;
+  }
+  .gravatar {
+    position: absolute;
+    top: 8px;
+    right: 45px;
+    width: 50px;
   }
 }
-    #burger, #label-menu {
-      position: fixed;
-      top: 18px;
-      right: 20px;
-      height: 20px;
-      width: 20px;
-      z-index: 5;
-      span {
-        background-color: black;
-        position: absolute;
-        width: 100%;
-        height: 2px;
-        top: 50%;
-        border-radius: 5px;
-        transition: 1s;
-      }
-      span:first-child {
-        top: 3px;
-      }
-      span:last-child {
-        top: 16px;
-      }
-    }
-    #label-menu:hover {
-      cursor: pointer;
-    }
-    #burger:checked + #label-menu {
 
-      span {
-        opacity: 0;
-        top: 50%;
-      }
-      span:first-child {
-        opacity: 1;
-        transform: rotate(405deg);
-      }
-      span:last-child {
-        opacity: 1;
-        transform: rotate(-405deg);
-      }
+#drop-down {
+  padding: 10px;
+  position: absolute;
+  right: 0px;
+  top: 50px;
+  width: 100%;
+  background-color: rgba($nav-color, 0.8);
+  text-align: center;
+  transition: width 5s;
+  .nav-item {
+    &:hover {
+      color: white;
     }
-    nav{
-      width: 100%;
-      height: 100%;
-
-    }
-    #visible-id{
-  /*     visibility: hidden; */
-z-index: 100;
-background-color: aliceblue;
-    }
-    #burger, nav {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      transition: 1s;
-      transition-delay: .5s;
-        ul {
-        list-style-type: none;
-        text-decoration: none;
-        text-align: center;
-
-        right: 20%;
-         li {
-          visibility: hidden;
-          transition: .5s;
-          transition-delay: 0s;
-         a {
-           text-align: center;
-             color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-family: sans-serif;
-            display: block;
-            padding: 8px 38px 5px 0;
-            &:hover{
-              color: black;
-              transition: 3s;
-            }
-          }
-        }
-      }
-    }
-    #burger:checked ~ nav {
-      .header-container{
-
-        height: 100%;
-
-      }
-        z-index: 10;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(190, 187, 250, 0.80);
-      transition-delay: 0s;
-       ul {
-        li {
-          visibility: visible;
-          transition-delay: .5s;
-        }
-      }
-    }
-
-
-#burger[type="checkbox" i] {
-    display: none;
+  }
 }
 
-.menu {
-  background-color: blue;
+@include mediaSm {
 }
+
+@include mediaMd {
+}
+
+@include mediaLg {
+}
+
+@include mediaXl {
+}
+
+/* -----------------------------NAV--------------------------------- */
+#burger,
+#label-menu {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  z-index: 1;
+  .nav-line {
+    background-color: black;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    border-radius: 5px;
+    transition: 1s;
+  }
+  .nav-line:first-child {
+    top: 3px;
+  }
+  .nav-line:last-child {
+    top: 16px;
+  }
+}
+#burger:checked + #label-menu {
+  .nav-line {
+    opacity: 0;
+    top: 50%;
+  }
+  .nav-line:first-child {
+    opacity: 1;
+    transform: rotate(405deg);
+  }
+  .nav-line:last-child {
+    opacity: 1;
+    transform: rotate(-405deg);
+  }
+}
+input[type="checkbox"] {
+  visibility: hidden;
+}
+/* -----------------------------NAV--------------------------------- */
