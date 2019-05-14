@@ -1,5 +1,6 @@
-import React from 'react';
+import React from "react";
 import MenuDropdown from "./Menu";
+import "./User.scss";
 
 const User = props => {
   return (
@@ -10,8 +11,7 @@ const User = props => {
         onLogin={props.login}
       />
     </div>
-  )
+  );
 };
-
 
 export default User;

@@ -1,0 +1,106 @@
+@import "../../config";
+
+.search-button {
+  margin-right: 10px;
+  margin-top: 25px;
+  height: 22px;
+  z-index: -100;
+  border: 0 solid rgba(255, 255, 255, 0);
+  background-color: rgba(255, 255, 255, 0);
+  .search-button:hover {
+    margin-right: 9px;
+    height: 24px;
+    margin-top: 4px;
+    transition: 0.5s;
+  }
+}
+
+form {
+  margin-top: 70px;
+}
+.input_field {
+  z-index: -1;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 13px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0);
+  border: 0px solid rgba(255, 255, 255, 0);
+  padding: 10px 5px;
+  border-radius: 0.01px;
+  margin-left: 20px;
+}
+i {
+  margin-left: 45%;
+}
+
+.cursor {
+  position: relative;
+}
+.cursor i {
+  position: absolute;
+  width: 2px;
+  height: 80%;
+  background-color: rgb(41, 41, 41);
+  left: 5px;
+  top: 10%;
+  animation-name: blink;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  opacity: 1;
+}
+.cursor input:focus + i {
+  display: none;
+}
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.submit_input {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+}
+
+//mobile
+@include mediaSm {
+  i {
+    margin-left: 42%;
+  }
+  .input_field {
+    margin-left: 14px;
+  }
+}
+
+@include mediaMd {
+  i {
+    margin-left: 42%;
+  }
+  .input_field {
+    margin-left: 10px;
+  }
+}
+
+@include mediaLg {
+  i {
+    margin-left: 46%;
+  }
+  .input_field {
+    margin-left: 12px;
+  }
+}
+
+@include mediaXl {
+  i {
+    margin-left: 47%;
+  }
+  .input_field {
+    margin-left: 7px;
+  }
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./WatchList.css";
+import "./WatchList.scss";
 
 const WatchList = props => (
   <div>

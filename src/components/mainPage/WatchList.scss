@@ -1,5 +1,5 @@
 .item {
-  border: 2px solid grey;
+  border-top: 2px solid rgb(221, 221, 221);
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -25,12 +25,14 @@
   margin-right: 20px;
 }
 
-.symbol, .price {
+.symbol,
+.price {
   font-size: 20px;
 }
 
 /* Hi Monica!!!! :) :) :)  */
 
-.name, .percent {
+.name,
+.percent {
   font-size: 14px;
 }

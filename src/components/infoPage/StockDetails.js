@@ -1,5 +1,5 @@
 import React from "react";
-import "./StockDetails.css";
+import "./StockDetails.scss";
 
 // Attempt to round number with 2 decimal places
 
@@ -15,6 +15,7 @@ const StockDetails = ({ stock }) => {
       <p>Market cap: {stock.marketcap}</p>
       <p>Revenue: {stock.revenue}</p>
       <p>Revenue per share: {stock.revenuePerShare}</p>
+
       <p>EBITDA: {stock.ebitda}</p>
       <p>Profit Margin: {stock.profitMargin}</p>
       <p>ROE: {stock.returnOnEquity}</p>

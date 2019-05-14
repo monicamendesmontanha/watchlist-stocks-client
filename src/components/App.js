@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import "../App.scss";
+
 import MenuDropdown from "./header/Menu";
 import User from "./header/User";
 import WatchList from "./mainPage/WatchList";
@@ -7,18 +9,22 @@ import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 
-const serverTop10Companies = (companies) =>
+const serverTop10Companies = companies =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
-const serverPriceUrl = (stockSymbol) =>
+const serverPriceUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/price`;
-const serverQuoteUrl = (stockSymbol) =>
+const serverQuoteUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/quote?displayPercent=true`;
-const serverStatsUrl = (stockSymbol) =>
+const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
 
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
-    <button onClick={backToList}>Back to list</button>
+    <div>
+      <button className="back-to-list" onClick={backToList}>
+        Back to list
+      </button>
+    </div>
     <StockDetails stock={selectedStock} />
     <StockChart symbol={symbol} />
   </>
@@ -42,11 +48,11 @@ class App extends React.Component {
       stocks: [],
       page: "LIST", // LIST || DETAILS
 
-      symbol: '',
+      symbol: "",
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser,
+      currentUser: currentUser
     };
 
     this.logout = this.logout.bind(this);
@@ -66,12 +72,12 @@ class App extends React.Component {
   }
 
   logout() {
-    console.log('logging out');
+    console.log("logging out");
     this.setState({ currentUser: null });
   }
 
   login() {
-    console.log('logging in');
+    console.log("logging in");
     const currentUser = {
       menu_icon: "menu_icon",
       gravata: "gravata",
@@ -82,7 +88,7 @@ class App extends React.Component {
   }
 
   getValueFromInput(e) {
-    this.setState({symbol: e.target.value});
+    this.setState({ symbol: e.target.value });
   }
 
   async fetchStockDetailsFromAPI(symbol) {
@@ -115,7 +121,7 @@ class App extends React.Component {
 
     const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
 
-    this.setState( {
+    this.setState({
       stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
     });
   }
@@ -143,19 +149,25 @@ class App extends React.Component {
     );
 
     this.setState({
-      stocks: result.data,
-     });
-
+      stocks: result.data
+    });
   }
 
   render() {
     return (
       <div className="App">
-        <MenuDropdown user={this.state.currentUser} onLogin={this.login} onLogout={this.logout}/>
+        <MenuDropdown
+          user={this.state.currentUser}
+          onLogin={this.login}
+          onLogout={this.logout}
+        />
 
         {this.state.page === "LIST" ? (
           <>
-            <SearchStock getValueFromInput={this.getValueFromInput} addStockToList={this.addStockToList}/>
+            <SearchStock
+              getValueFromInput={this.getValueFromInput}
+              addStockToList={this.addStockToList}
+            />
             <WatchList
               stocks={this.state.stocks}
               page={this.state.page}
@@ -163,7 +175,11 @@ class App extends React.Component {
             />
           </>
         ) : (
-          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} symbol={this.state.symbol} />
+          <StockDetailsPage
+            selectedStock={this.state.selectedStock}
+            backToList={this.backToList}
+            symbol={this.state.symbol}
+          />
         )}
       </div>
     );
