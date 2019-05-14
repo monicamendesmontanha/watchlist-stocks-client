@@ -7,20 +7,22 @@ import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 
-const serverTop10Companies = companies =>
+const serverTop10Companies = (companies) =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
-const serverPriceUrl = stockSymbol =>
+const serverPriceUrl = (stockSymbol) =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/price`;
-const serverQuoteUrl = stockSymbol =>
+const serverQuoteUrl = (stockSymbol) =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/quote?displayPercent=true`;
-const serverStatsUrl = stockSymbol =>
+const serverStatsUrl = (stockSymbol) =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
+const serverPeriodUrl = (stockSymbol, period) =>
+  `https://api.iextrading.com/1.0/stock/${stockSymbol}/chart/${period}`;
 
-const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
+const StockDetailsPage = ({ selectedStock, backToList }) => (
   <>
     <button onClick={backToList}>Back to list</button>
     <StockDetails stock={selectedStock} />
-    <StockChart symbol={symbol} />
+    <StockChart stock={selectedStock} />
   </>
 );
 
@@ -42,11 +44,14 @@ class App extends React.Component {
       stocks: [],
       page: "LIST", // LIST || DETAILS
 
-      symbol: 'aapl',
+      symbol: '',
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser
+      currentUser: currentUser,
+
+      period: '1y',
+      chartData: {}
     };
 
     this.logout = this.logout.bind(this);
@@ -90,6 +95,7 @@ class App extends React.Component {
     const price = await axios.get(serverPriceUrl(symbol));
     const quote = await axios.get(serverQuoteUrl(symbol));
     const stats = await axios.get(serverStatsUrl(symbol));
+    const chart = await axios.get(serverPeriodUrl(symbol));
 
     return {
       price: price.data,
@@ -137,15 +143,55 @@ class App extends React.Component {
     });
   }
 
+  setPeriod = async e => {
+    e.preventDefault();
+    await this.setState({
+      period: e.target.value
+    });
+    // console.log(this.state.period);
+    this.getChartData();
+  }
+
+  getChartData(){
+    axios.get(serverPeriodUrl(this.state.selectedStock, this.state.period)).then((results) => {
+      const {data} = results;
+
+      // console.log(data);
+      const samples = data.map(value=> value.high);
+      const dates = data.map(value=>value.date);
+      this.setState({
+        chartData:{
+          labels: dates,
+          datasets:[
+            {
+              label:'High Price',
+              data: samples ,
+              backgroundColor:[
+                // 'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                // 'rgba(255, 206, 86, 0.6)',
+                // 'rgba(75, 192, 192, 0.6)',
+                // 'rgba(153, 102, 255, 0.6)',
+                // 'rgba(255, 159, 64, 0.6)',
+                // 'rgba(255, 99, 132, 0.6)'
+              ]
+            }
+          ]
+        }});
+      // console.log({results})
+    });
+  };
+
   async componentDidMount() {
     const result = await axios.get(
       serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
     );
 
-
     this.setState({
       stocks: result.data,
      });
+
+     this.getChartData();
 
   }
 
@@ -164,7 +210,7 @@ class App extends React.Component {
             />
           </>
         ) : (
-          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList} symbol={this.state.symbol}/>
+          <StockDetailsPage  selectedStock={this.state.selectedStock} backToList={this.backToList}/>
         )}
       </div>
     );
