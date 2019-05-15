@@ -51,7 +51,6 @@ class BarChart extends Component {
                   // 'rgba(153, 102, 255, 0.6)',
                   // 'rgba(255, 159, 64, 0.6)',
                   // 'rgba(255, 99, 132, 0.6)'
-                  "#45a29e"
                 ]
               }
             ]
@@ -68,7 +67,6 @@ class BarChart extends Component {
       <>
         <div className="chart-container">
           <div className="current-period">
-            Current Period: {this.state.period}
           </div>
           {periods.map(period => (
             <button
