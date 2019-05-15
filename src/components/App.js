@@ -68,32 +68,43 @@ class App extends React.Component {
     this.addStockToList = this.addStockToList.bind(this);
     
 
-    //REST api for reading
+    ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
-    this.gettingUserInfo()
+    // this.gettingUserInfo() test completed
 
     this.gettingUserStock = this.gettingUserStock.bind(this)
-    this.gettingUserStock()
+    // this.gettingUserStock() test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
-    this.gettingStockList()
+    // this.gettingStockList() test completed
 
 
-    //Rest API for writing. Please change the paramaters before apply
-    this.addingStocktoUser = this.addingStocktoUser.bind(this)
+    //////////////REST API for writing. Please change the paramaters before apply
+    this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
+    // this.addingStocktoUser() test completed
+
     this.addingStockList = this.addingStockList.bind(this)
+    // this.addingStockList() test completed
 
   }
 
  //about getting data from server 
 
- addingStockList(){
+up
 
- }
+ addingStockList(){
+  console.log('addingStockList fired');
+  axios.post('http://localhost:3333/stock/addlist', {
+    listname: 'test',
+    listcontents: 'test'
+}, {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is addingStockList result: ');
+  })
+}
 
  addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation. 
   console.log('addingStocktoUser fired');
-    axios.post('http://localhost:3333/stock/addstock', {stocksymbol: this.state.symbol}, {withCredentials: true}).then((result)=>{ //need option?
+    axios.post('http://localhost:3333/stock/addstock', {stocksymbol: "test"}, {withCredentials: true}).then((result)=>{ //need option?
       console.log('This is added stock info: ', result.data);
     })
   }
@@ -128,7 +139,7 @@ class App extends React.Component {
     })
 
   }
- //
+ //////////////////////////////REST API END ////////////////////////////////////////////////////////////////////////
 
 
   clickMenuDropDown() {
