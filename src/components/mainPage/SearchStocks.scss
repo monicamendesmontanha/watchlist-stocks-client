@@ -79,6 +79,18 @@ i {
   .input_field {
     margin-left: 14px;
   }
+  .search-button {
+    background-color: $light-grey;
+    padding: 8px 20px 6px 78px;
+    z-index: -2;
+
+    margin-top: 18px;
+    height: 27px;
+    position: absolute;
+    right: 0;
+  }
+  ::placeholder {
+  }
 }
 
 @include mediaMd {
