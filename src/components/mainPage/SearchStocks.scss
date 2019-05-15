@@ -77,19 +77,21 @@ i {
     margin-left: 42%;
   }
   .input_field {
-    margin-left: 14px;
+    padding-left: 15px;
+    text-align: left;
   }
   .search-button {
     background-color: $light-grey;
     padding: 8px 20px 6px 78px;
     z-index: -2;
-
     margin-top: 18px;
     height: 27px;
     position: absolute;
     right: 0;
   }
   ::placeholder {
+    text-align: left;
+    padding-left: 3px;
   }
 }
 

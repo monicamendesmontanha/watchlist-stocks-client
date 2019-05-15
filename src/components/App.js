@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import "../App.scss";
+import homeButton from "./home.svg";
 
 import MenuDropdown from "./header/Menu";
 import User from "./header/User";
@@ -21,6 +22,9 @@ const serverStatsUrl = stockSymbol =>
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <div>
+      <button className="mobile-button" onClick={backToList}>
+        <img className="mobile-button-icon" src={homeButton} alt=" " />
+      </button>
       <button className="back-to-list" onClick={backToList}>
         Back to list
       </button>

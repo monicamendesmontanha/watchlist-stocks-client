@@ -44,6 +44,36 @@ p {
     border: 1px solid $blue;
   }
 }
+.mobile-button {
+  position: fixed;
+  z-index: 4;
+  width: 180px;
+  height: 35px;
+  margin-left: 0;
+  margin-top: -48px;
+
+  background-color: $blue;
+  color: $light-grey;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 15px;
+  border: none;
+  &:hover {
+    z-index: 2;
+    background-color: $light-grey;
+    color: $blue;
+    margin-top: -50px;
+    width: 185px;
+    height: 40px;
+    transition: 0.5s;
+    font-weight: 900;
+    font-size: 17px;
+    border: 1px solid $blue;
+  }
+}
+.mobile-button-icon {
+  visibility: hidden;
+}
 /* -----------------------------MOBILE------------------------------ */
 //mobile
 /* ========--=-======single line========--=-======*/
@@ -57,14 +87,45 @@ p {
 } */
 /* ========--=-======single line========--=-======*/
 @include mediaSm {
+  .back-to-list {
+    display: none;
+  }
+  .mobile-button {
+    position: fixed;
+    bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    width: 100%;
+    border: none;
+    &:hover {
+      padding-top: 20px;
+      padding-bottom: 40px;
+      width: 100%;
+      background-color: $blue;
+      border: 1px solid $light-grey;
+    }
+  }
+  .mobile-button-icon {
+    width: 170px;
+    display: inline-block;
+    text-align: center;
+    margin-top: -38px;
+    visibility: visible;
+  }
 }
 
 @include mediaMd {
+  .mobile-button-icon {
+  }
 }
 
 @include mediaLg {
+  .mobile-button {
+  }
 }
 
 @include mediaXl {
+  .mobile-button {
+  }
 }
 /* -----------------------------MOBILE------------------------------ */

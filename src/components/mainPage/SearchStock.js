@@ -5,7 +5,7 @@ import svgSprite from "./search.svg";
 const SearchStock = ({ getValueFromInput, addStockToList }) => {
   return (
     <div>
-      <form className="search-stock" onSubmit={addStockToList} autofocus>
+      <form className="search-stock" onSubmit={addStockToList}>
         <div className="search-input">
           <div className="cursor">
             <input
@@ -13,7 +13,7 @@ const SearchStock = ({ getValueFromInput, addStockToList }) => {
               type="search"
               onChange={getValueFromInput}
               placeholder="symbol"
-              autofocus
+              autoFocus
             />
             <i />
           </div>
