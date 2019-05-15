@@ -9,7 +9,7 @@ import StockDetails from "./components/infoPage/StockDetails";
 import Login from "./components/loginPage/Login";
 import SearchStock from "./components/mainPage/SearchStock";
 import WatchList from "./components/mainPage/WatchList";
-import SignUp from "./components/signupPage/Signup";
+import Signup from "./components/signupPage/Signup";
 
 const Routes = (
   <Router>
@@ -22,7 +22,7 @@ const Routes = (
       <Route exact path="/login" component={Login} />
       <Route exact path="/searchstock" component={SearchStock} />
       <Route exact path="/watchlist" component={WatchList} />
-      <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/signup" component={Signup} />
     </div>
   </Router>
 );
