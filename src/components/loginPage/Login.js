@@ -15,17 +15,17 @@ class Login extends Component {
     this.getEmail = this.getEmail.bind(this);
     this.getPassword = this.getPassword.bind(this);
     this.login = this.login.bind(this)
-    this.gettingUserInfo = this.gettingUserInfo.bind(this)
+    // this.gettingUserInfo = this.gettingUserInfo.bind(this)
     
   }
 
-  gettingUserInfo(){
-    console.log('userinfo fired');
-    axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
-      console.log('!!!!!!!!!axios result for userinfo fired: ', result);
-    })
+  // gettingUserInfo(){
+  //   console.log('userinfo fired');
+  //   axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
+  //     console.log('!!!!!!!!!axios result for userinfo fired: ', result);
+  //   })
 
-  }
+  // }
 
   getEmail(event) {
     this.setState({
@@ -57,7 +57,7 @@ class Login extends Component {
         this.props.history.push('/')
       }).then((result)=>{console.log("here is  what is going on 22:", result)}).then((aa)=>{
         console.log('getting info fired')
-        this.gettingUserInfo()
+        // this.gettingUserInfo()
       })
 
 

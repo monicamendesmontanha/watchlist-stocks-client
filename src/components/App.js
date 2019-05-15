@@ -66,17 +66,70 @@ class App extends React.Component {
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
+    
+
+    //REST api for reading
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
     this.gettingUserInfo()
+
+    this.gettingUserStock = this.gettingUserStock.bind(this)
+    this.gettingUserStock()
+
+    this.gettingStockList = this.gettingStockList.bind(this)
+    this.gettingStockList()
+
+
+    //Rest API for writing. Please change the paramaters before apply
+    this.addingStocktoUser = this.addingStocktoUser.bind(this)
+    this.addingStockList = this.addingStockList.bind(this)
+
   }
 
-  gettingUserInfo(){
-    console.log('userinfo fired');
-    axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
-      console.log('!!!!!!!!!This is the user info: ', result);
+ //about getting data from server 
+
+ addingStockList(){
+
+ }
+
+ addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation. 
+  console.log('addingStocktoUser fired');
+    axios.post('http://localhost:3333/stock/addstock', {stocksymbol: this.state.symbol}, {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is added stock info: ', result.data);
+    })
+  }
+
+
+ 
+ 
+ gettingStockList(){ //getting user's favorit stock list
+
+    console.log('gettingStockList fired');
+
+    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is favorite Stock List info: ', result.data);
     })
 
   }
+
+ 
+  gettingUserStock(){ //getting stocks that user added.
+    console.log('gettingUserStock fired');
+
+    axios.get('http://localhost:3333/stock/mystock', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('this is userStock info: ', result.data);
+    })
+
+  }
+
+  gettingUserInfo(){ //getting user info
+    console.log('userinfo fired');
+    axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is the user info: ', result.data);
+    })
+
+  }
+ //
+
 
   clickMenuDropDown() {
     this.setState({
