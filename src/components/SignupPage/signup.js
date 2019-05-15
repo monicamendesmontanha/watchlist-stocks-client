@@ -44,7 +44,7 @@ getConfirmPassword(event) {
 
 signup(event) {
   console.log(
-    'A name was submitted: ' + this.state.name,
+    'Name: ' + this.state.name,
     'Email ' + this.state.email,
     'Password ' + this.state.password,
     'confirmPassword ' + this.state.confirm);
