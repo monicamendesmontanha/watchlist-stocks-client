@@ -42,7 +42,7 @@ class BarChart extends Component {
             labels: dates,
             datasets: [
               {
-                label: "High Price",
+                label: "Price",
                 data: samples,
                 backgroundColor: [
                   // "rgba(255, 99, 132, 0.6)"
