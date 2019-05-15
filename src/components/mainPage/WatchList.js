@@ -15,7 +15,7 @@ const WatchList = props => (
           </div>
 
           <div className="price_percent">
-            <div className="price">{stock.price}</div>
+            <div className="price">$ {stock.price}</div>
           </div>
         </div>
       );
