@@ -71,8 +71,9 @@ p {
     border: 1px solid $blue;
   }
 }
-.mobile-button-icon {
+.mobile-button {
   visibility: hidden;
+  z-index: -4;
 }
 /* -----------------------------MOBILE------------------------------ */
 //mobile
@@ -110,12 +111,15 @@ p {
     display: inline-block;
     text-align: center;
     margin-top: -38px;
+  }
+  .mobile-button {
     visibility: visible;
+    z-index: -4;
   }
 }
 
 @include mediaMd {
-  .mobile-button-icon {
+  .mobile-button {
   }
 }
 
