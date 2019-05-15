@@ -3,23 +3,20 @@
 .stock-details {
   padding: 20px;
   margin-top: 100px;
-  display: flex;
-  flex-flow: wrap;
-  align-items: stretch;
+  z-index: -1;
   column-width: 100%;
-  width: 600px;
+  width: 100%;
   text-align: left;
-  justify-content: space-around;
 }
 
 p {
   display: inline-block;
-  width: 300px;
+  width: 50%;
 }
 
 .back-to-list {
   position: fixed;
-  z-index: 4;
+  z-index: 10;
   width: 180px;
   height: 35px;
   margin-left: 0;
@@ -103,7 +100,8 @@ p {
       padding-bottom: 40px;
       width: 100%;
       background-color: $blue;
-      border: 1px solid $light-grey;
+      border-left: 100px solid $light-grey;
+      border-right: 100px solid $light-grey;
     }
   }
   .mobile-button-icon {
@@ -114,7 +112,7 @@ p {
   }
   .mobile-button {
     visibility: visible;
-    z-index: -4;
+    z-index: 1;
   }
 }
 

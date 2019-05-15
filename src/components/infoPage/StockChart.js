@@ -33,7 +33,6 @@ class BarChart extends Component {
     axios
       .get(this.stock_period_url(this.props.symbol, this.state.period))
       .then(results => {
-
         const { data } = results;
         const samples = data.map(value => value.high);
         const dates = data.map(value => value.date);
@@ -48,10 +47,11 @@ class BarChart extends Component {
                   // "rgba(255, 99, 132, 0.6)"
                   // 'rgba(54, 162, 235, 0.6)',
                   // 'rgba(255, 206, 86, 0.6)',
-                  'rgba(75, 192, 192, 0.6)',
+                  // 'rgba(75, 192, 192, 0.6)',
                   // 'rgba(153, 102, 255, 0.6)',
                   // 'rgba(255, 159, 64, 0.6)',
                   // 'rgba(255, 99, 132, 0.6)'
+                  "#45a29e"
                 ]
               }
             ]
@@ -67,6 +67,9 @@ class BarChart extends Component {
     return (
       <>
         <div className="chart-container">
+          <div className="current-period">
+            Current Period: {this.state.period}
+          </div>
           {periods.map(period => (
             <button
               className="period-buttons"
@@ -76,9 +79,7 @@ class BarChart extends Component {
               {period}
             </button>
           ))}
-          <div className="current-period">
-            Current Period: {this.state.period}
-          </div>
+
           <Line data={this.state.chartData} />
         </div>
       </>
