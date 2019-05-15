@@ -53,6 +53,8 @@ signup(event) {
 
   render() {
     return (
+      <>
+      <h2>SIGN UP!</h2>
       <form onSubmit={this.signup}>
 
         <label>
@@ -71,13 +73,14 @@ signup(event) {
         </label>
         <label>
 
-          Cofirm:
+          Confirm Password:
           <input type="text" value={this.state.confirmPassword} onChange={this.getConfirmPassword}  />
         </label>
 
         <input type="submit" value="Signup!" />
 
       </form>
+      </>
     );
   }
 }
