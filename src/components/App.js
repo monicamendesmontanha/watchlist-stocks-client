@@ -4,7 +4,6 @@ import "../App.scss";
 import homeButton from "./home.svg";
 
 import MenuDropdown from "./header/Menu";
-import User from "./header/User";
 import WatchList from "./mainPage/WatchList";
 import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
