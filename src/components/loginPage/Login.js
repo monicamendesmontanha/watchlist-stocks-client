@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import axios from 'axios'
 
+const SERVER_URL ='http://localhost:3333/auth/login'
 class Login extends Component {
 
  constructor(props) {
@@ -11,6 +13,7 @@ class Login extends Component {
 
     this.getEmail = this.getEmail.bind(this);
     this.getPassword = this.getPassword.bind(this);
+    this.login = this.login.bind(this)
   }
 
   getEmail(event) {
@@ -25,12 +28,22 @@ class Login extends Component {
     });
   }
 
+
   login(event) {
+    event.preventDefault();
     console.log(
       'Email ' + this.state.email,
-      'Password ' + this.state.password);
-    event.preventDefault();
-  }
+      'Password ' + this.state.password)
+
+  axios.post(SERVER_URL, {userId: this.state.email, password: this.state.password}).then((result)=>{
+
+        console.log('here is what is going on 1', result)
+      
+        this.props.history.push('/')
+      }).then((result)=>{console.log("here is what is going on 2:", result);})
+       
+
+  } //function end
 
   render() {
     return (
@@ -45,7 +58,7 @@ class Login extends Component {
 
         <label>
           Password:
-          <input type="text"  value={this.state.password} onChange={this.getPassword} />
+          <input type="password"  value={this.state.password} onChange={this.getPassword} />
         </label>
 
         <input type="submit" value="Login" />
