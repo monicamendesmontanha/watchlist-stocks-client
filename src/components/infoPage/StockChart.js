@@ -77,7 +77,7 @@ class BarChart extends Component {
             </button>
           ))}
           <div className="current-period">
-            Current Period: {this.state.period}
+            {/* Current Period: {this.state.period} */}
           </div>
           <Line data={this.state.chartData} />
         </div>
