@@ -57,23 +57,18 @@ signup(event) {
   //   );
 
   // name, userId, password
-
-
-
   axios.post(SERVER_URL, {name: this.state.name, userId: this.state.email, password: this.state.password}).then((result)=>{
 
     console.log(result);
-    this.props.history.push('/login')
+    
+
+    this.props.history.push('/login') //// 
   })
-
-//   saveFlight(number, origin, destination, date) {
-
-//     axios.post(SERVER_URL, {flight_number: number, origin: origin, destination: destination, date: date }).then((result) => {
-//         this.setState({flights: [...this.state.flights, result.data]});
-//     });
-// } 
-
 } // this is the end of function 
+
+
+
+
 
   render() {
     return (

@@ -66,6 +66,16 @@ class App extends React.Component {
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
+    this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
+    this.gettingUserInfo()
+  }
+
+  gettingUserInfo(){
+    console.log('userinfo fired');
+    axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('!!!!!!!!!This is the user info: ', result);
+    })
+
   }
 
   clickMenuDropDown() {
