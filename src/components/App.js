@@ -66,7 +66,7 @@ class App extends React.Component {
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
-    
+
 
     ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
@@ -88,7 +88,7 @@ class App extends React.Component {
 
   }
 
- //about getting data from server 
+ //about getting data from server
 
 up
 
@@ -102,7 +102,7 @@ up
   })
 }
 
- addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation. 
+ addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation.
   console.log('addingStocktoUser fired');
     axios.post('http://localhost:3333/stock/addstock', {stocksymbol: "test"}, {withCredentials: true}).then((result)=>{ //need option?
       console.log('This is added stock info: ', result.data);
@@ -110,8 +110,8 @@ up
   }
 
 
- 
- 
+
+
  gettingStockList(){ //getting user's favorit stock list
 
     console.log('gettingStockList fired');
@@ -122,7 +122,7 @@ up
 
   }
 
- 
+
   gettingUserStock(){ //getting stocks that user added.
     console.log('gettingUserStock fired');
 
@@ -154,14 +154,8 @@ up
   }
 
   login() {
-    console.log("logging in");
-    const currentUser = {
-      menu_icon: "menu_icon",
-      gravata: "gravata",
-      name: "Monica",
-      email: "monica@email.com"
-    };
-    this.setState({ currentUser: currentUser });
+    let path = `/login`;
+    this.props.history.push(path);
   }
 
   getValueFromInput(e) {
