@@ -13,7 +13,7 @@ const WatchList = props => (
           <button onClick={props.delStock}>Delete</button>
 
           <div className="symbol_logo">
-            <img id="company_logo" src={`https://storage.googleapis.com/iex/api/logos/${stock.symbol}.png`} />
+            <img id="company_logo" alt=" " src={`https://storage.googleapis.com/iex/api/logos/${stock.symbol}.png`} />
           </div>
 
           <div className="symbol_name">
