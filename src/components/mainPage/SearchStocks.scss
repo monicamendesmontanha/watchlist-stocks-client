@@ -64,6 +64,7 @@ i {
   }
 }
 .submit_input {
+  z-index: 1;
   position: absolute;
   right: 0;
   top: 50px;
@@ -74,7 +75,7 @@ i {
 //mobile
 @include mediaSm {
   i {
-    margin-left: 42%;
+    margin-left: 2% !important;
   }
   .input_field {
     padding-left: 15px;
