@@ -73,7 +73,7 @@ class App extends React.Component {
     // this.gettingUserInfo() test completed
 
     this.gettingUserStock = this.gettingUserStock.bind(this)
-    // this.gettingUserStock() test completed
+    // this.gettingUserStock() //test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
     // this.gettingStockList() test completed
@@ -81,22 +81,52 @@ class App extends React.Component {
 
     //////////////REST API for writing. Please change the paramaters before apply
     this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
-    // this.addingStocktoUser() test completed
+    // this.addingStocktoUser()// test completed
 
     this.addingStockList = this.addingStockList.bind(this)
-    // this.addingStockList() test completed
+    // this.addingStockList() //test completed
+    
+    // this.deleteUserStock = this.deleteUserStock.bind(this) don't use this code for the moment
+    // this.deleteUserStock()
+
+    this.deleteStockList =this.deleteStockList.bind(this)
+    // this.deleteStockList() test copleted
+
+  }
+ 
+  deleteStockList(){
+    
+  console.log('deleteStockList fired');
+  axios.post('http://localhost:3333/stock/deletelist', {listname:"del", listcontents: 'del'}, {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+  })
+}
+
+gettingStockList(){ //getting user's favorit stock list
+
+    console.log('gettingStockList fired');
+
+    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is favorite Stock List info: ', result.data);
+    })
 
   }
 
  //about getting data from server 
+ deleteUserStock(){
 
-up
+  console.log('deleteUserStock fired');
+  axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+  })
+}
+
 
  addingStockList(){
   console.log('addingStockList fired');
   axios.post('http://localhost:3333/stock/addlist', {
-    listname: 'test',
-    listcontents: 'test'
+    listname: 'test12',
+    listcontents: 'test12' // aapl,samsung,googl
 }, {withCredentials: true}).then((result)=>{ //need option?
     console.log('This is addingStockList result: ');
   })
@@ -112,15 +142,7 @@ up
 
  
  
- gettingStockList(){ //getting user's favorit stock list
-
-    console.log('gettingStockList fired');
-
-    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
-      console.log('This is favorite Stock List info: ', result.data);
-    })
-
-  }
+ 
 
  
   gettingUserStock(){ //getting stocks that user added.
