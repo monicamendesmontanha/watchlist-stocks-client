@@ -224,6 +224,12 @@ up
     });
   }
 
+  deleteStock = (index, e) => {
+    const stocks = Object.assign([], this.state.stocks);
+    stocks.splice(index, 1);
+    this.setState({stocks: stocks});
+  }
+  
   render() {
     return (
       <div className="App">
@@ -243,6 +249,8 @@ up
               stocks={this.state.stocks}
               page={this.state.page}
               selectStock={this.selectStock}
+              delStock={this.deleteStock.bind(this.index)}
+
             />
           </>
         ) : (
