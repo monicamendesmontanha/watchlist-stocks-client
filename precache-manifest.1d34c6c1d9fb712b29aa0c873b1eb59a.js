@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "816c9b255dcf6a27b01ca257f919ab85",
+    "revision": "a41d487212ec292c4a1c906e9310cdd5",
     "url": "/watchlist-stocks-client/index.html"
   },
   {
-    "revision": "9736f751a6972aea8a9e",
-    "url": "/watchlist-stocks-client/static/css/main.3ef28c08.chunk.css"
+    "revision": "01e33c4429a536d1f8cb",
+    "url": "/watchlist-stocks-client/static/css/main.4bedcdec.chunk.css"
   },
   {
-    "revision": "8388d83813897bb92f51",
-    "url": "/watchlist-stocks-client/static/js/2.73914485.chunk.js"
+    "revision": "2a3bc74062df67df1faf",
+    "url": "/watchlist-stocks-client/static/js/2.4908acb6.chunk.js"
   },
   {
-    "revision": "9736f751a6972aea8a9e",
-    "url": "/watchlist-stocks-client/static/js/main.c25bd637.chunk.js"
+    "revision": "01e33c4429a536d1f8cb",
+    "url": "/watchlist-stocks-client/static/js/main.f6719d13.chunk.js"
   },
   {
     "revision": "4cb537df0091d8815b48",
