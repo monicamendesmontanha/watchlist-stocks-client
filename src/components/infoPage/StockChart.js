@@ -68,10 +68,15 @@ class BarChart extends Component {
               <button
                 className="period-buttons"
                 onClick={this.setPeriod}
-                style={{
-                  backgroundColor: this.state.buttonColor,
-                  color: this.state.textColor
-                }}
+                style={
+                  period === this.state.period
+                    ? {
+                        color: "#1f2833",
+                        backgroundColor: "#66fcf1",
+                        border: "2px solid #1f2833"
+                      }
+                    : { color: "#66fcf1", backgroundColor: "#1f2833" }
+                }
                 value={period}
               >
                 {period}
