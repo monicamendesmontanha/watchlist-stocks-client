@@ -5,6 +5,7 @@ form {
 .search-input {
   z-index: 2;
 }
+
 .cls-1 {
   fill: #e89797;
 }
@@ -71,29 +72,11 @@ i {
   background-color: rgba(255, 255, 255, 0);
   border: none;
 }
-
+.chart-page {
+  background: rgba(0, 0, 0, 0);
+}
 //mobile
 @include mediaSm {
-  i {
-    margin-left: 2% !important;
-  }
-  .input_field {
-    padding-left: 15px;
-    text-align: left;
-  }
-  .search-button {
-    background-color: $light-grey;
-    padding: 8px 20px 4px 80px;
-    z-index: -2;
-    margin-top: 18px;
-    height: 27px;
-    position: absolute;
-    right: 0;
-  }
-  ::placeholder {
-    text-align: left;
-    padding-left: 3px;
-  }
 }
 
 @include mediaMd {

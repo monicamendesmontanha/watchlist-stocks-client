@@ -20,7 +20,6 @@ const serverQuoteUrl = stockSymbol =>
 const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
 
-
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <div>
@@ -63,7 +62,6 @@ class App extends React.Component {
       newloading: []
     };
 
-
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
 
@@ -73,12 +71,11 @@ class App extends React.Component {
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
 
-
     ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
     this.gettingUserInfo()
 
-    this.gettingUserStock = this.gettingUserStock.bind(this)
+    // this.gettingUserStock = this.gettingUserStock.bind(this);
     // this.gettingUserStock() //test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
@@ -214,25 +211,39 @@ gettingStockList(){ //getting user's favorit stock list
 //   })
 // }
 
-
- addingStockList(){
-  console.log('addingStockList fired');
-  axios.post('http://localhost:3333/stock/addlist', {
-    listname: 'test12',
-    listcontents: 'test12' // aapl,samsung,googl
-}, {withCredentials: true}).then((result)=>{ //need option?
-    console.log('This is addingStockList result: ');
-  })
-} /// not to be used
+ 
 
 
-  gettingUserStock(){ //getting stocks that user added.
-    console.log('gettingUserStock fired');
+  addingStockList() {
+    console.log("addingStockList fired");
+    axios
+      .post(
+        "http://localhost:3333/stock/addlist",
+        {
+          listname: "test12",
+          listcontents: "test12" // aapl,samsung,googl
+        },
+        { withCredentials: true }
+      )
+      .then(result => {
+        //need option?
+        console.log("This is addingStockList result: ");
+      });
+  }
 
-    axios.get('http://localhost:3333/stock/mystock', {withCredentials: true}).then((result)=>{ //need option?
-      console.log('this is userStock info: ', result.data);
-    })
-
+  addingStocktoUser() {
+    //adding data to server. Paramater to be changed as per situation.
+    console.log("addingStocktoUser fired");
+    axios
+      .post(
+        "http://localhost:3333/stock/addstock",
+        { stocksymbol: "test" },
+        { withCredentials: true }
+      )
+      .then(result => {
+        //need option?
+        console.log("This is added stock info: ", result.data);
+      });
   }
 
   gettingUserInfo(){ //getting user info
@@ -243,8 +254,8 @@ gettingStockList(){ //getting user's favorit stock list
     })
     
   }
- //////////////////////////////REST API END ////////////////////////////////////////////////////////////////////////
 
+  //////////////////////////////REST API END ////////////////////////////////////////////////////////////////////////
 
   clickMenuDropDown() {
     this.setState({
@@ -287,10 +298,7 @@ gettingStockList(){ //getting user's favorit stock list
       dividendYield: stats.data.dividendYield,
       profitMargin: stats.data.profitMargin,
       returnOnEquity: stats.data.returnOnEquity,
-      ttmEPS: stats.data.ttmEPS,
-
-
-
+      ttmEPS: stats.data.ttmEPS
     };
   }
 
@@ -307,47 +315,35 @@ gettingStockList(){ //getting user's favorit stock list
 ///////////main code ////main code ////main code 
   async addStockToList(e) {
     e.preventDefault();
-    console.log('addstock list fired');
-    
+    console.log("addstock list fired");
 
     // async componentDidMount() {
     //   const result = await axios.get(
     //     serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
     //   );
-  
+
     //   this.setState({
     //     stocks: result.data
     //   }); 
 
-
-    console.log('this is this.state.symbol', this.state.symbol);
-    // 여기다 넣는 거구나 
-    const stock = await this.fetchStockDetailsFromAPI(this.state.symbol); //
+    const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
     // console.log('this is stock list', stock)
     // console.log('this is previous stock list?', this.state.stocks) //this.state.stocks
-    let previousList = []
-    this.state.stocks.forEach((el)=>{
-      previousList.push(el.symbol)
-    })
+    let previousList = [];
+    this.state.stocks.forEach(el => {
+      previousList.push(el.symbol);
+    });
     // console.log('this is  previous list', previousList);
     // console.log('symbole to be added', stock)
     // console.log('index of', previousList.indexOf(stock.symbol))
-    if(previousList.indexOf(stock.symbol) === -1){
-      previousList.push(stock.symbol)
-      // console.log('prevlist',previousList);
-      let joined = previousList.join(',')
-
-      console.log(joined);
-      console.log('stock can be added as it is not included :', stock)
+    if (previousList.indexOf(stock.symbol) === -1) {
+      console.log("stock can be added as it is not included :", stock);
       this.setState({
         stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
       });
-      console.log('thisis setState', this.state.stocks);
-      
-    } else{
-      console.log('the stock cannot be added ad it is already in the list');
+    } else {
+      console.log("the stock cannot be added ad it is already in the list");
     }
-    
   }
 
   backToList() {
@@ -372,8 +368,8 @@ gettingStockList(){ //getting user's favorit stock list
   deleteStock = (index, e) => {
     const stocks = Object.assign([], this.state.stocks);
     stocks.splice(index, 1);
-    this.setState({stocks: stocks});
-  }
+    this.setState({ stocks: stocks });
+  };
 
   render() {
     return (
@@ -395,7 +391,6 @@ gettingStockList(){ //getting user's favorit stock list
               page={this.state.page}
               selectStock={this.selectStock}
               delStock={this.deleteStock.bind(this.index)}
-
             />
           </>
         ) : (
