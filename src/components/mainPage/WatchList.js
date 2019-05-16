@@ -14,10 +14,13 @@ const WatchList = props => (
           <button onClick={props.delStock}>Delete</button>
           <div className="symbol_name">
             <div className="symbol">{stock.symbol}</div>
+            <div className="name">{stock.companyName}</div>
+
           </div>
 
           <div className="price_percent">
             <div className="price">$ {stock.price}</div>
+            <div className="percent">$ {(stock.changePercent.toFixed(2))}</div>
           </div>
           <button onClick={() => props.selectStock(stock.symbol)}>ⓘ</button>
         </div>

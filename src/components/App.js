@@ -10,8 +10,9 @@ import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 
 
-const serverTop10Companies = companies =>
-  `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
+// const serverTop10Companies = companies =>
+//   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
+
 const serverPriceUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/price`;
 const serverQuoteUrl = stockSymbol =>
@@ -41,7 +42,7 @@ class App extends React.Component {
     const currentUser = {
       menu_icon: "menu_icon",
       gravata: "gravata",
-      name: "Luke",
+      name: "",
       email: "luke@email.com"
     };
 
@@ -56,7 +57,9 @@ class App extends React.Component {
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser
+      currentUser: currentUser, 
+
+      newloading: []
     };
 
     this.logout = this.logout.bind(this);
@@ -71,47 +74,122 @@ class App extends React.Component {
 
     ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
-    // this.gettingUserInfo() test completed
+    this.gettingUserInfo()
 
     this.gettingUserStock = this.gettingUserStock.bind(this)
     // this.gettingUserStock() //test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
-    this.gettingStockList() //test completed
+    // this.gettingStockList() //test completed
 
 
     //////////////REST API for writing. Please change the paramaters before apply
-    this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
+    // this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
     // this.addingStocktoUser()// test completed
 
     this.addingStockList = this.addingStockList.bind(this)
-    // this.addingStockList() //test completed
+    // // this.addingStockList() //test completed
     
-    // this.deleteUserStock = this.deleteUserStock.bind(this) don't use this code for the moment
-    // this.deleteUserStock()
-
+   
     this.deleteStockList =this.deleteStockList.bind(this)
     // this.deleteStockList() test copleted
     // this.deleteStockList()
     this.noLoginList= this.noLoginList.bind(this)
-    this.noLoginList()
-  }
-  noLoginList(){
+    this.noLoginList() //To be replaced
 
-    console.log('deleteStockList fired');
-  axios.get('http://localhost:3333/', {withCredentials: true}).then((result)=>{ //need option?
-    console.log('no log in stock list: ', result.data);
-    return result.data
-  }) }
+    // this.initialStockLoading = this.initialStockLoading.bind(this)
+    // initialStockLoading()
+    this.initialstocks = this.initialstocks.bind(this)
+    this.initialstocks()
+  }
+
+
+  // updatingStockList(){ //getting user's favorit stock list
+
+  //   console.log('gettingStockList fired');
+
+  //   axios.get('http://localhost:3333/stock/update',{listcontents:}, {withCredentials: true}).then((result)=>{ //need option?
+  //     console.log('This is favorite Stock List info: ', result.data);
+  //   })
+
+  // }
+
+  initialstocks() { //working on here
+    // e.preventDefault();
+    setTimeout(()=>{
+      console.log('initial list fired');
+      console.log('this is this.state.symbol', this.state);
+    
+      let previousList = []
+      this.state.stocks.forEach((el)=>{
+        previousList.push(el.symbol)
+      })
+    
+      let initialstock = this.state.newloading
+      // 여기다 넣는 거구나 
+       initialstock.forEach(async(e)=>{
+        console.log('this is e', e)
+         if(previousList.indexOf(e) === -1){
+          let stock = await this.fetchStockDetailsFromAPI(e); 
+          console.log('this is changed stock', stock);
+          this.setState({
+            stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
+          });
+         }
+         
+      })
+    }, 1500)
+
+  }
+   
+
+
+  noLoginList(){
+    setTimeout(() => {
+      if(this.state.currentUser.name ===""){
+        console.log('nologin function fired'); 
+        console.log('currentuser.name', this.state.currentUser.name) 
+        console.log('currentuser', this.state.currentUser) 
+        axios.get('http://localhost:3333/', {withCredentials: true}).then((result)=>{ //need option?
+          let companylist = result.data.nostocklist.split(',')
+          let newlist =[]
+          companylist.forEach((e)=>{
+          newlist.push(e)})
+          console.log('this is new list', newlist); //여기까지는 문제 없음
+          this.setState({newloading: newlist})
+          console.log('this is state.newloading', this.state.newloading);
+        })
+    }else{
+        console.log('currentuser', this.state.currentUser) 
+        console.log('currentuser.name', this.state.currentUser.name) 
+        console.log('login function fired');
+        axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+        console.log('this is userStocklist info: ', result.data);
+          let companylist = result.data.listcontents.split(',')
+          let newlist =[]
+          companylist.forEach((e)=>{
+          newlist.push(e)})
+          console.log('this is new list', newlist); //여기까지는 문제 없음
+          this.setState({newloading: newlist})
+          console.log('this is state.newloading', this.state.newloading);
+        })
+    }
+
+    }, 1000);
+
+}
+
+
  
   deleteStockList(){
-    
   console.log('deleteStockList fired');
   axios.post('http://localhost:3333/stock/deletelist',{listname:"listname"}, {withCredentials: true}).then((result)=>{ //need option?
     console.log('This is deleteUserStock result: ', result);
     console.log('delete completed')
   })
 }
+
+
 
 gettingStockList(){ //getting user's favorit stock list
 
@@ -122,6 +200,8 @@ gettingStockList(){ //getting user's favorit stock list
     })
 
   }
+
+  
 
  //about getting data from server 
 //  deleteUserStock(){
@@ -141,14 +221,7 @@ gettingStockList(){ //getting user's favorit stock list
 }, {withCredentials: true}).then((result)=>{ //need option?
     console.log('This is addingStockList result: ');
   })
-}
-
- addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation.
-  console.log('addingStocktoUser fired');
-    axios.post('http://localhost:3333/stock/addstock', {stocksymbol: "test"}, {withCredentials: true}).then((result)=>{ //need option?
-      console.log('This is added stock info: ', result.data);
-    })
-  }
+} /// not to be used
 
 
   gettingUserStock(){ //getting stocks that user added.
@@ -164,8 +237,9 @@ gettingStockList(){ //getting user's favorit stock list
     console.log('userinfo fired');
     axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
       console.log('This is the user info: ', result.data);
+      this.setState({currentUser: result.data })
     })
-
+    
   }
  //////////////////////////////REST API END ////////////////////////////////////////////////////////////////////////
 
@@ -215,6 +289,17 @@ gettingStockList(){ //getting user's favorit stock list
     };
   }
 
+////main code ////main code ////main code 
+//this was for first loading
+
+
+//this was for first loading
+
+
+  
+
+
+///////////main code ////main code ////main code 
   async addStockToList(e) {
     e.preventDefault();
     console.log('addstock list fired');
@@ -227,10 +312,12 @@ gettingStockList(){ //getting user's favorit stock list
   
     //   this.setState({
     //     stocks: result.data
-    //   });
+    //   }); 
 
 
-    const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
+    console.log('this is this.state.symbol', this.state.symbol);
+    // 여기다 넣는 거구나 
+    const stock = await this.fetchStockDetailsFromAPI(this.state.symbol); //
     // console.log('this is stock list', stock)
     // console.log('this is previous stock list?', this.state.stocks) //this.state.stocks
     let previousList = []
@@ -241,10 +328,17 @@ gettingStockList(){ //getting user's favorit stock list
     // console.log('symbole to be added', stock)
     // console.log('index of', previousList.indexOf(stock.symbol))
     if(previousList.indexOf(stock.symbol) === -1){
+      previousList.push(stock.symbol)
+      // console.log('prevlist',previousList);
+      let joined = previousList.join(',')
+
+      console.log(joined);
       console.log('stock can be added as it is not included :', stock)
       this.setState({
         stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
       });
+      console.log('thisis setState', this.state.stocks);
+      
     } else{
       console.log('the stock cannot be added ad it is already in the list');
     }
@@ -268,15 +362,7 @@ gettingStockList(){ //getting user's favorit stock list
     });
   }
 
-  async componentDidMount() {
-    const result = await axios.get(
-      serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
-    );
-
-    this.setState({
-      stocks: result.data
-    });
-  }
+  
 
   deleteStock = (index, e) => {
     const stocks = Object.assign([], this.state.stocks);
