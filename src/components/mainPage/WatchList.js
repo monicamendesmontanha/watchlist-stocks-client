@@ -10,14 +10,9 @@ const WatchList = props => (
       return (
         <div key={stock.symbol} className="item">
           <img className="del-icon" src={del} alt="" onClick={props.delStock} />
-          <div className="symbol_logo">
-            <img
-              className="stock-logo"
-              id="company_logo"
-              src={`https://storage.googleapis.com/iex/api/logos/${
-                stock.symbol
-              }.png`}
-            />
+
+          <div className="stock-logo">
+            <img className="stock-logo" alt="" src={stock.symbol === 'GOOGL' ? `http://logo.clearbit.com/googl.com` : `https://storage.googleapis.com/iex/api/logos/${stock.symbol}.png`} />
           </div>
 
           <div className="symbol_name">
@@ -30,6 +25,7 @@ const WatchList = props => (
               theme={Themes.LIGHT}
               locale="en"
               style="3"
+              interval="D"
               hide_legend={true}
               hide_top_toolbar={true}
               width="130%"
