@@ -9,6 +9,7 @@ import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 
+
 const serverTop10Companies = companies =>
   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
 const serverPriceUrl = stockSymbol =>
@@ -17,6 +18,7 @@ const serverQuoteUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/quote?displayPercent=true`;
 const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
+
 
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
@@ -55,8 +57,11 @@ class App extends React.Component {
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser
+      currentUser: currentUser,
+
+      // logo: ""
     };
+
 
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
@@ -76,7 +81,7 @@ class App extends React.Component {
     // this.gettingUserStock() //test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
-    // this.gettingStockList() test completed
+    this.gettingStockList() //test completed
 
 
     //////////////REST API for writing. Please change the paramaters before apply
@@ -91,14 +96,24 @@ class App extends React.Component {
 
     this.deleteStockList =this.deleteStockList.bind(this)
     // this.deleteStockList() test copleted
-
+    // this.deleteStockList()
+    this.noLoginList= this.noLoginList.bind(this)
+    this.noLoginList()
   }
+  noLoginList(){
+
+    console.log('deleteStockList fired');
+  axios.get('http://localhost:3333/', {withCredentials: true}).then((result)=>{ //need option?
+    console.log('no log in stock list: ', result.data);
+    return result.data
+  }) }
  
   deleteStockList(){
     
   console.log('deleteStockList fired');
-  axios.post('http://localhost:3333/stock/deletelist', {listname:"del", listcontents: 'del'}, {withCredentials: true}).then((result)=>{ //need option?
+  axios.post('http://localhost:3333/stock/deletelist',{listname:"listname"}, {withCredentials: true}).then((result)=>{ //need option?
     console.log('This is deleteUserStock result: ', result);
+    console.log('delete completed')
   })
 }
 
@@ -200,7 +215,10 @@ gettingStockList(){ //getting user's favorit stock list
       dividendYield: stats.data.dividendYield,
       profitMargin: stats.data.profitMargin,
       returnOnEquity: stats.data.returnOnEquity,
-      ttmEPS: stats.data.ttmEPS
+      ttmEPS: stats.data.ttmEPS,
+
+
+
     };
   }
 
@@ -272,7 +290,7 @@ gettingStockList(){ //getting user's favorit stock list
     stocks.splice(index, 1);
     this.setState({stocks: stocks});
   }
-  
+
   render() {
     return (
       <div className="App">
