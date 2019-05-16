@@ -18,6 +18,7 @@ const serverQuoteUrl = stockSymbol =>
 const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
 
+
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <div>
@@ -55,8 +56,11 @@ class App extends React.Component {
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser
+      currentUser: currentUser,
+
+      // logo: ""
     };
+
 
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
@@ -90,7 +94,6 @@ class App extends React.Component {
 
  //about getting data from server
 
-up
 
  addingStockList(){
   console.log('addingStockList fired');
@@ -183,7 +186,10 @@ up
       dividendYield: stats.data.dividendYield,
       profitMargin: stats.data.profitMargin,
       returnOnEquity: stats.data.returnOnEquity,
-      ttmEPS: stats.data.ttmEPS
+      ttmEPS: stats.data.ttmEPS,
+
+
+
     };
   }
 
@@ -229,7 +235,7 @@ up
     stocks.splice(index, 1);
     this.setState({stocks: stocks});
   }
-  
+
   render() {
     return (
       <div className="App">
