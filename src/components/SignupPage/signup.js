@@ -60,11 +60,11 @@ signup(event) {
   axios.post(SERVER_URL, {name: this.state.name, userId: this.state.email, password: this.state.password}).then((result)=>{
 
     console.log(result);
-    
 
-    this.props.history.push('/login') //// 
+
+    this.props.history.push('/login') ////
   })
-} // this is the end of function 
+} // this is the end of function
 
 
 
