@@ -40,8 +40,8 @@ class App extends React.Component {
     const currentUser = {
       menu_icon: "menu_icon",
       gravata: "gravata",
-      name: "Monica",
-      email: "monica@email.com"
+      name: "Luke",
+      email: "luke@email.com"
     };
 
     this.state = {
