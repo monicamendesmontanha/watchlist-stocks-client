@@ -113,7 +113,10 @@ p {
 /* ========--=-======single line========--=-======*/
 @include mediaSm {
   .back-to-list {
-    display: none;
+    transition: 5s;
+
+    bottom: -100px;
+    /* display: none; */
   }
   .mobile-button {
     position: fixed;
@@ -141,6 +144,9 @@ p {
     visibility: visible;
     z-index: 1;
   }
+  p {
+    font-size: 12px;
+  }
 }
 
 @include mediaMd {
@@ -149,12 +155,14 @@ p {
 }
 
 @include mediaLg {
-  .mobile-button {
+  .stock-details-container {
+    height: 40px;
   }
 }
 
 @include mediaXl {
-  .mobile-button {
+  .stock-details-container {
+    height: 40px;
   }
 }
 /* -----------------------------MOBILE------------------------------ */

@@ -1,29 +1,52 @@
 import React from "react";
 import "./WatchList.scss";
+import info from "./info.svg";
+import del from "./del.svg";
+import TradingViewWidget, { Themes } from "react-tradingview-widget";
 
 const WatchList = props => (
   <div>
     {props.stocks.map(stock => {
       return (
-
-        <div
-          key={stock.symbol}
-          className="item"
-        >
-          <button onClick={props.delStock}>Delete</button>
-
+        <div key={stock.symbol} className="item">
+          <img className="del-icon" src={del} alt="" onClick={props.delStock} />
           <div className="symbol_logo">
-            <img id="company_logo" src={`https://storage.googleapis.com/iex/api/logos/${stock.symbol}.png`} />
+            <img
+              className="stock-logo"
+              id="company_logo"
+              src={`https://storage.googleapis.com/iex/api/logos/${
+                stock.symbol
+              }.png`}
+            />
           </div>
 
           <div className="symbol_name">
             <div className="symbol">{stock.symbol}</div>
+            <div className="name">{stock.companyName}</div>
+          </div>
+          <div className="wiget">
+            <TradingViewWidget
+              symbol={`NASDAQ:${stock.symbol}`}
+              theme={Themes.LIGHT}
+              locale="en"
+              style="3"
+              hide_legend={true}
+              hide_top_toolbar={true}
+              width="130%"
+              height="155"
+            />
           </div>
 
           <div className="price_percent">
             <div className="price">$ {stock.price}</div>
+
           </div>
-          <button onClick={() => props.selectStock(stock.symbol)}>ⓘ</button>
+          <img
+            className="info-icon"
+            onClick={() => props.selectStock(stock.symbol)}
+            src={info}
+            alt=""
+          />
         </div>
       );
     })}
