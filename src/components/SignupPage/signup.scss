@@ -1,8 +1,9 @@
 @import "../../config";
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
-.login-container {
+.signup-container {
   padding: 30px;
+  padding-bottom: 90px;
   margin: auto;
   width: 270px;
   height: 50vh;
@@ -12,9 +13,8 @@
   h2 {
     text-align: center;
   }
-  .email-login-input,
-  .password-login-input {
-    width: 100%;
+  .signup-input {
+    width: 92%;
     border: none;
     border-bottom: 2px solid $dark-grey;
     border-radius: 0;
@@ -31,7 +31,7 @@
     font-size: 15px;
   }
 }
-.login-page-button {
+.signup-page-button {
   border: none;
   height: 30px;
   display: block;

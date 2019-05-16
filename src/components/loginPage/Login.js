@@ -65,7 +65,7 @@ class Login extends Component {
         // console.log('here is what is going on data.request.response', result["request"])
         //result should be session
 
-        this.props.history.push("/");
+        // this.props.history.push("/");
       })
       .then(result => {
         console.log("here is  what is going on 22:", result);
@@ -78,6 +78,7 @@ class Login extends Component {
         console.log("getting info fired");
         // this.gettingUserInfo()
       });
+    this.props.history.push("/");
   }
 
   ////// async
@@ -176,7 +177,6 @@ class Login extends Component {
               onChange={this.getPassword}
               placeholder="Password"
             />
-
             <button className="login-page-button" type="submit" value="Login">
               Login
             </button>

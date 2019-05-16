@@ -20,6 +20,7 @@ const serverQuoteUrl = stockSymbol =>
 const serverStatsUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/stats`;
 
+
 const StockDetailsPage = ({ selectedStock, backToList, symbol }) => (
   <>
     <div>
@@ -61,6 +62,7 @@ class App extends React.Component {
 
       newloading: []
     };
+
 
     this.logout = this.logout.bind(this);
     this.login = this.login.bind(this);
@@ -285,7 +287,10 @@ gettingStockList(){ //getting user's favorit stock list
       dividendYield: stats.data.dividendYield,
       profitMargin: stats.data.profitMargin,
       returnOnEquity: stats.data.returnOnEquity,
-      ttmEPS: stats.data.ttmEPS
+      ttmEPS: stats.data.ttmEPS,
+
+
+
     };
   }
 
@@ -369,7 +374,7 @@ gettingStockList(){ //getting user's favorit stock list
     stocks.splice(index, 1);
     this.setState({stocks: stocks});
   }
-  
+
   render() {
     return (
       <div className="App">
