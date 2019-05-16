@@ -206,12 +206,38 @@ gettingStockList(){ //getting user's favorit stock list
 
   async addStockToList(e) {
     e.preventDefault();
+    console.log('addstock list fired');
+    
+
+    // async componentDidMount() {
+    //   const result = await axios.get(
+    //     serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
+    //   );
+  
+    //   this.setState({
+    //     stocks: result.data
+    //   });
+
 
     const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
-
-    this.setState({
-      stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
-    });
+    // console.log('this is stock list', stock)
+    // console.log('this is previous stock list?', this.state.stocks) //this.state.stocks
+    let previousList = []
+    this.state.stocks.forEach((el)=>{
+      previousList.push(el.symbol)
+    })
+    // console.log('this is  previous list', previousList);
+    // console.log('symbole to be added', stock)
+    // console.log('index of', previousList.indexOf(stock.symbol))
+    if(previousList.indexOf(stock.symbol) === -1){
+      console.log('stock can be added as it is not included :', stock)
+      this.setState({
+        stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
+      });
+    } else{
+      console.log('the stock cannot be added ad it is already in the list');
+    }
+    
   }
 
   backToList() {
