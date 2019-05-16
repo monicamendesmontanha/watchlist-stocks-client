@@ -40,9 +40,10 @@ class BarChart extends Component {
         const { data } = results;
         const samples = data.map(value => value.high);
         const dates = data.map(value => value.date);
+        const minutes = data.map(value => value.minute);
         this.setState({
           chartData: {
-            labels: dates,
+            labels: this.state.period === "1d" ? minutes: dates,
             datasets: [
               {
                 label: "Price",
