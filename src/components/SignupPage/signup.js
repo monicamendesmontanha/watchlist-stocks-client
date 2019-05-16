@@ -9,13 +9,11 @@ class Signup extends Component {
       name: '',
       email: '',
       password: '',
-      // confirmPassword: ''
     };
 
     this.getName = this.getName.bind(this);
     this.getEmail = this.getEmail.bind(this);
     this.getPassword = this.getPassword.bind(this);
-    // this.getConfirmPassword = this.getConfirmPassword.bind(this);
     this.signup = this.signup.bind(this);
  }
 
@@ -38,25 +36,8 @@ getPassword(event) {
   });
 }
 
-// getConfirmPassword(event) {
-//   this.setState({
-//     confirmPassword: event.target.value
-//   });
-// }
-
-//  signup key: 9d110eef-4b99-43a3-9b06-39234e26491c
-
 signup(event) {
   event.preventDefault();
-
-  // console.log(
-  //   'Name: ' + this.state.name,
-  //   'Email ' + this.state.email,
-  //   'Password ' + this.state.password,
-  //   // 'confirmPassword ' + this.state.confirm
-  //   );
-
-  // name, userId, password
   axios.post(SERVER_URL, {name: this.state.name, userId: this.state.email, password: this.state.password}).then((result)=>{
 
     console.log(result);
@@ -64,8 +45,7 @@ signup(event) {
 
     this.props.history.push('/login') ////
   })
-} // this is the end of function
-
+}
 
 
 
@@ -90,13 +70,6 @@ signup(event) {
           Password:
           <input type="password"  value={this.state.password} onChange={this.getPassword} />
         </label>
-
-        {/* <label>
-
-          Confirm Password:
-          <input type="text" value={this.state.confirmPassword} onChange={this.getConfirmPassword}  />
-        </label> */}
-
 
         <input type="submit" value="Signup!" />
 
