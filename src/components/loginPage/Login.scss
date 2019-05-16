@@ -1,10 +1,92 @@
 @import "../../config";
+@import url("https://fonts.googleapis.com/css?family=Varela+Round");
 
-body {
-}
 .login-container {
+  padding: 30px;
   margin: auto;
-  width: 80%;
-  height: 90vh;
-  background-color: black;
+  width: 270px;
+  height: 50vh;
+  margin-top: 90px;
+  background-color: $light-grey;
+  box-shadow: 1px 1px 20px rgb(199, 199, 199);
+  h2 {
+    text-align: center;
+  }
+  .email-login-input,
+  .password-login-input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid $dark-grey;
+    border-radius: 0;
+    background-color: rgba(176, 236, 234, 0);
+    padding-bottom: 5px;
+    margin-bottom: 50px;
+    font-weight: bold;
+    font-size: 13px;
+    padding-bottom: 8px;
+  }
+
+  ::placeholder {
+    text-align: left;
+    font-size: 15px;
+  }
 }
+.login-page-button {
+  border: none;
+  height: 30px;
+  display: block;
+  background-color: $blue;
+  color: $light-grey;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  width: 100%;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: $light-grey;
+    color: $blue;
+    transition: 0.5s;
+    border: 1px solid $blue;
+  }
+}
+.login-page-signup-button {
+  background-color: rgba(0, 0, 0, 0);
+  font-family: "Varela Round", sans-serif;
+  border: none;
+  font-size: 13px;
+  display: inline-block;
+  color: $dark-grey;
+  &:hover {
+    color: $blue;
+  }
+}
+.dont-have {
+  font-size: 13px;
+  letter-spacing: -1px;
+  color: $blue;
+}
+
+//mobile
+
+@include mediaXSm {
+  .login-container {
+    padding-right: 50px;
+  }
+  .login-page-button {
+    width: 106%;
+  }
+  .login-container {
+  }
+}
+@include mediaSm {
+}
+
+@include mediaMd {
+}
+
+@include mediaLg {
+}
+
+@include mediaXl {
+}
+/* -----------------------------MOBILE------------------------------ */

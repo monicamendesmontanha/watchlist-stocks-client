@@ -77,7 +77,7 @@ class App extends React.Component {
     // this.gettingUserInfo() test completed
 
     this.gettingUserStock = this.gettingUserStock.bind(this)
-    // this.gettingUserStock() test completed
+    // this.gettingUserStock() //test completed
 
     this.gettingStockList = this.gettingStockList.bind(this)
     // this.gettingStockList() test completed
@@ -85,21 +85,52 @@ class App extends React.Component {
 
     //////////////REST API for writing. Please change the paramaters before apply
     this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
-    // this.addingStocktoUser() test completed
+    // this.addingStocktoUser()// test completed
 
     this.addingStockList = this.addingStockList.bind(this)
-    // this.addingStockList() test completed
+    // this.addingStockList() //test completed
+    
+    // this.deleteUserStock = this.deleteUserStock.bind(this) don't use this code for the moment
+    // this.deleteUserStock()
+
+    this.deleteStockList =this.deleteStockList.bind(this)
+    // this.deleteStockList() test copleted
+
+  }
+ 
+  deleteStockList(){
+    
+  console.log('deleteStockList fired');
+  axios.post('http://localhost:3333/stock/deletelist', {listname:"del", listcontents: 'del'}, {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+  })
+}
+
+gettingStockList(){ //getting user's favorit stock list
+
+    console.log('gettingStockList fired');
+
+    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is favorite Stock List info: ', result.data);
+    })
 
   }
 
- //about getting data from server
+ //about getting data from server 
+//  deleteUserStock(){
+
+//   console.log('deleteUserStock fired');
+//   axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
+//     console.log('This is deleteUserStock result: ', result);
+//   })
+// }
 
 
  addingStockList(){
   console.log('addingStockList fired');
   axios.post('http://localhost:3333/stock/addlist', {
-    listname: 'test',
-    listcontents: 'test'
+    listname: 'test12',
+    listcontents: 'test12' // aapl,samsung,googl
 }, {withCredentials: true}).then((result)=>{ //need option?
     console.log('This is addingStockList result: ');
   })
@@ -110,19 +141,6 @@ class App extends React.Component {
     axios.post('http://localhost:3333/stock/addstock', {stocksymbol: "test"}, {withCredentials: true}).then((result)=>{ //need option?
       console.log('This is added stock info: ', result.data);
     })
-  }
-
-
-
-
- gettingStockList(){ //getting user's favorit stock list
-
-    console.log('gettingStockList fired');
-
-    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
-      console.log('This is favorite Stock List info: ', result.data);
-    })
-
   }
 
 
@@ -195,12 +213,38 @@ class App extends React.Component {
 
   async addStockToList(e) {
     e.preventDefault();
+    console.log('addstock list fired');
+    
+
+    // async componentDidMount() {
+    //   const result = await axios.get(
+    //     serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
+    //   );
+  
+    //   this.setState({
+    //     stocks: result.data
+    //   });
+
 
     const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
-
-    this.setState({
-      stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
-    });
+    // console.log('this is stock list', stock)
+    // console.log('this is previous stock list?', this.state.stocks) //this.state.stocks
+    let previousList = []
+    this.state.stocks.forEach((el)=>{
+      previousList.push(el.symbol)
+    })
+    // console.log('this is  previous list', previousList);
+    // console.log('symbole to be added', stock)
+    // console.log('index of', previousList.indexOf(stock.symbol))
+    if(previousList.indexOf(stock.symbol) === -1){
+      console.log('stock can be added as it is not included :', stock)
+      this.setState({
+        stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
+      });
+    } else{
+      console.log('the stock cannot be added ad it is already in the list');
+    }
+    
   }
 
   backToList() {
