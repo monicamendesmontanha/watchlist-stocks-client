@@ -31,7 +31,7 @@ const MenuDropdown = props => {
             {menuVisible ? (
               <>
                 <nav className="drop-down">
-                  <div className="nav-item">Account</div>
+                  {/* <div className="nav-item">Account</div> */}
                   <div className="nav-item">{props.user.name}</div>
                   <button
                     className="nav-item nav-button"

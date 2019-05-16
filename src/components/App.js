@@ -40,8 +40,8 @@ class App extends React.Component {
     const currentUser = {
       menu_icon: "menu_icon",
       gravata: "gravata",
-      name: "Monica",
-      email: "monica@email.com"
+      name: "Luke",
+      email: "luke@email.com"
     };
 
     this.state = {
@@ -66,7 +66,7 @@ class App extends React.Component {
 
     this.getValueFromInput = this.getValueFromInput.bind(this);
     this.addStockToList = this.addStockToList.bind(this);
-    
+
 
     ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
@@ -113,13 +113,13 @@ gettingStockList(){ //getting user's favorit stock list
   }
 
  //about getting data from server 
- deleteUserStock(){
+//  deleteUserStock(){
 
-  console.log('deleteUserStock fired');
-  axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
-    console.log('This is deleteUserStock result: ', result);
-  })
-}
+//   console.log('deleteUserStock fired');
+//   axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
+//     console.log('This is deleteUserStock result: ', result);
+//   })
+// }
 
 
  addingStockList(){
@@ -132,7 +132,7 @@ gettingStockList(){ //getting user's favorit stock list
   })
 }
 
- addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation. 
+ addingStocktoUser(){ //adding data to server. Paramater to be changed as per situation.
   console.log('addingStocktoUser fired');
     axios.post('http://localhost:3333/stock/addstock', {stocksymbol: "test"}, {withCredentials: true}).then((result)=>{ //need option?
       console.log('This is added stock info: ', result.data);
@@ -140,11 +140,6 @@ gettingStockList(){ //getting user's favorit stock list
   }
 
 
- 
- 
- 
-
- 
   gettingUserStock(){ //getting stocks that user added.
     console.log('gettingUserStock fired');
 
@@ -176,14 +171,8 @@ gettingStockList(){ //getting user's favorit stock list
   }
 
   login() {
-    console.log("logging in");
-    const currentUser = {
-      menu_icon: "menu_icon",
-      gravata: "gravata",
-      name: "Monica",
-      email: "monica@email.com"
-    };
-    this.setState({ currentUser: currentUser });
+    let path = `/login`;
+    this.props.history.push(path);
   }
 
   getValueFromInput(e) {
@@ -252,6 +241,12 @@ gettingStockList(){ //getting user's favorit stock list
     });
   }
 
+  deleteStock = (index, e) => {
+    const stocks = Object.assign([], this.state.stocks);
+    stocks.splice(index, 1);
+    this.setState({stocks: stocks});
+  }
+  
   render() {
     return (
       <div className="App">
@@ -271,6 +266,8 @@ gettingStockList(){ //getting user's favorit stock list
               stocks={this.state.stocks}
               page={this.state.page}
               selectStock={this.selectStock}
+              delStock={this.deleteStock.bind(this.index)}
+
             />
           </>
         ) : (

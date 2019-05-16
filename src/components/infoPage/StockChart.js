@@ -40,9 +40,10 @@ class BarChart extends Component {
         const { data } = results;
         const samples = data.map(value => value.high);
         const dates = data.map(value => value.date);
+        const minutes = data.map(value => value.minute);
         this.setState({
           chartData: {
-            labels: dates,
+            labels: this.state.period === "1d" ? minutes: dates,
             datasets: [
               {
                 label: "Price",
@@ -68,10 +69,15 @@ class BarChart extends Component {
               <button
                 className="period-buttons"
                 onClick={this.setPeriod}
-                style={{
-                  backgroundColor: this.state.buttonColor,
-                  color: this.state.textColor
-                }}
+                style={
+                  period === this.state.period
+                    ? {
+                        color: "#1f2833",
+                        backgroundColor: "#66fcf1",
+                        border: "2px solid #1f2833"
+                      }
+                    : { color: "#66fcf1", backgroundColor: "#1f2833" }
+                }
                 value={period}
               >
                 {period}
