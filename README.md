@@ -22,10 +22,10 @@ Authors:
 
 ---
 ## Watch List Stocks
-<img width="407" alt="Screen Shot 2019-05-17 at 14 39 00" src="https://user-images.githubusercontent.com/33978352/57903559-e94a0e80-78b1-11e9-9791-0d11445c910e.png">
+<img width="407" alt="Screen Shot 2019-05-17 at 14 36 34" src="https://user-images.githubusercontent.com/33978352/57903547-d46d7b00-78b1-11e9-9033-6d6dc589e8d4.png">
 
 ## Stock Info Details
-<img width="407" alt="Screen Shot 2019-05-17 at 14 36 34" src="https://user-images.githubusercontent.com/33978352/57903547-d46d7b00-78b1-11e9-9033-6d6dc589e8d4.png">
+<img width="407" alt="Screen Shot 2019-05-17 at 14 39 00" src="https://user-images.githubusercontent.com/33978352/57903559-e94a0e80-78b1-11e9-9791-0d11445c910e.png">
 
 ## Signup
 <img width="404" alt="Screen Shot 2019-05-17 at 14 37 53" src="https://user-images.githubusercontent.com/33978352/57903627-2dd5aa00-78b2-11e9-9e5d-702a531a6ad3.png">
