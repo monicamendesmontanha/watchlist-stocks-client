@@ -378,7 +378,7 @@ gettingStockList(){ //getting user's favorit stock list
 
 
 
-  deleteStock = (index, e) => {
+  deleteStock = (index) => {
     const stocks = Object.assign([], this.state.stocks);
     stocks.splice(index, 1);
     this.setState({ stocks: stocks });

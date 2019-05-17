@@ -77,6 +77,13 @@ i {
 }
 //mobile
 @include mediaSm {
+  .search-button {
+    position: absolute;
+    right: 0;
+    padding-bottom: 8px;
+    padding-left: 83px;
+  }
+
 }
 
 @include mediaMd {
