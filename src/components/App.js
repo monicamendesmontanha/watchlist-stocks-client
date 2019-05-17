@@ -265,8 +265,21 @@ gettingStockList(){ //getting user's favorit stock list
 
   logout() {
     console.log("logging out");
+    ///working on
     this.setState({ currentUser: null });
-  }
+    
+    axios.get('http://localhost:3333/auth/logout', {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+    console.log('delete completed')
+    console.log('logout fired');
+  })
+  
+  // window.location.reload(true); 
+  // console.log('refresh fired');
+}
+
+
+  
 
   login() {
     let path = `/login`;
