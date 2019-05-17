@@ -35,7 +35,7 @@ const WatchList = props => (
 
           <div className="price_percent">
             <div className="price">$ {stock.price}</div>
-
+            <div className="percent">{(stock.changePercent.toFixed(2))}</div>
           </div>
           <img
             className="info-icon"

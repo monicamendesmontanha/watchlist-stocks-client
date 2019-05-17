@@ -9,8 +9,10 @@ import SearchStock from "./mainPage/SearchStock";
 import StockDetails from "./infoPage/StockDetails";
 import StockChart from "./infoPage/StockChart";
 
-const serverTop10Companies = companies =>
-  `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
+
+// const serverTop10Companies = companies =>
+//   `https://api.iextrading.com/1.0/tops/last?symbols=${companies}`;
+
 const serverPriceUrl = stockSymbol =>
   `https://api.iextrading.com/1.0/stock/${stockSymbol}/price`;
 const serverQuoteUrl = stockSymbol =>
@@ -40,7 +42,7 @@ class App extends React.Component {
     const currentUser = {
       menu_icon: "menu_icon",
       gravata: "gravata",
-      name: "Luke",
+      name: "",
       email: "luke@email.com"
     };
 
@@ -55,9 +57,9 @@ class App extends React.Component {
       results: [],
 
       menuVisible: false,
-      currentUser: currentUser
+      currentUser: currentUser, 
 
-      // logo: ""
+      newloading: []
     };
 
     this.logout = this.logout.bind(this);
@@ -71,77 +73,146 @@ class App extends React.Component {
 
     ///////////////////////////REST api for reading////////////////////////
     this.gettingUserInfo = this.gettingUserInfo.bind(this); // getting user information from data base
-    // this.gettingUserInfo() test completed
+    this.gettingUserInfo()
 
-    this.gettingUserStock = this.gettingUserStock.bind(this);
+    // this.gettingUserStock = this.gettingUserStock.bind(this);
     // this.gettingUserStock() //test completed
 
-    this.gettingStockList = this.gettingStockList.bind(this);
-    this.gettingStockList(); //test completed
+    this.gettingStockList = this.gettingStockList.bind(this)
+    // this.gettingStockList() //test completed
+
 
     //////////////REST API for writing. Please change the paramaters before apply
-    this.addingStocktoUser = this.addingStocktoUser.bind(this); //test completed
+    // this.addingStocktoUser = this.addingStocktoUser.bind(this) //test completed
     // this.addingStocktoUser()// test completed
 
-    this.addingStockList = this.addingStockList.bind(this);
-    // this.addingStockList() //test completed
-
-    // this.deleteUserStock = this.deleteUserStock.bind(this) don't use this code for the moment
-    // this.deleteUserStock()
-
-    this.deleteStockList = this.deleteStockList.bind(this);
+    this.addingStockList = this.addingStockList.bind(this)
+    // // this.addingStockList() //test completed
+    
+   
+    this.deleteStockList =this.deleteStockList.bind(this)
     // this.deleteStockList() test copleted
     // this.deleteStockList()
-    this.noLoginList = this.noLoginList.bind(this);
-    this.noLoginList();
-  }
-  noLoginList() {
-    console.log("deleteStockList fired");
-    axios
-      .get("http://localhost:3333/", { withCredentials: true })
-      .then(result => {
-        //need option?
-        console.log("no log in stock list: ", result.data);
-        return result.data;
-      });
+    this.noLoginList= this.noLoginList.bind(this)
+    this.noLoginList() //To be replaced
+
+    // this.initialStockLoading = this.initialStockLoading.bind(this)
+    // initialStockLoading()
+    this.initialstocks = this.initialstocks.bind(this)
+    this.initialstocks()
   }
 
-  deleteStockList() {
-    console.log("deleteStockList fired");
-    axios
-      .post(
-        "http://localhost:3333/stock/deletelist",
-        { listname: "listname" },
-        { withCredentials: true }
-      )
-      .then(result => {
-        //need option?
-        console.log("This is deleteUserStock result: ", result);
-        console.log("delete completed");
-      });
-  }
 
-  gettingStockList() {
-    //getting user's favorit stock list
+  // updatingStockList(){ //getting user's favorit stock list
 
-    console.log("gettingStockList fired");
+  //   console.log('gettingStockList fired');
 
-    axios
-      .get("http://localhost:3333/stock/mylist", { withCredentials: true })
-      .then(result => {
-        //need option?
-        console.log("This is favorite Stock List info: ", result.data);
-      });
-  }
-
-  //about getting data from server
-  //  deleteUserStock(){
-
-  //   console.log('deleteUserStock fired');
-  //   axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
-  //     console.log('This is deleteUserStock result: ', result);
+  //   axios.get('http://localhost:3333/stock/update',{listcontents:}, {withCredentials: true}).then((result)=>{ //need option?
+  //     console.log('This is favorite Stock List info: ', result.data);
   //   })
+
   // }
+
+  initialstocks() { //working on here
+    // e.preventDefault();
+    setTimeout(()=>{
+      console.log('initial list fired');
+      console.log('this is this.state.symbol', this.state);
+    
+      let previousList = []
+      this.state.stocks.forEach((el)=>{
+        previousList.push(el.symbol)
+      })
+    
+      let initialstock = this.state.newloading
+      // 여기다 넣는 거구나 
+       initialstock.forEach(async(e)=>{
+        console.log('this is e', e)
+         if(previousList.indexOf(e) === -1){
+          let stock = await this.fetchStockDetailsFromAPI(e); 
+          console.log('this is changed stock', stock);
+          this.setState({
+            stocks: [...this.state.stocks, stock] // Add stock searched on the end of list
+          });
+         }
+         
+      })
+    }, 1500)
+
+  }
+   
+
+
+  noLoginList(){
+    setTimeout(() => {
+      if(this.state.currentUser.name ===""){
+        console.log('nologin function fired'); 
+        console.log('currentuser.name', this.state.currentUser.name) 
+        console.log('currentuser', this.state.currentUser) 
+        axios.get('http://localhost:3333/', {withCredentials: true}).then((result)=>{ //need option?
+          let companylist = result.data.nostocklist.split(',')
+          let newlist =[]
+          companylist.forEach((e)=>{
+          newlist.push(e)})
+          console.log('this is new list', newlist); //여기까지는 문제 없음
+          this.setState({newloading: newlist})
+          console.log('this is state.newloading', this.state.newloading);
+        })
+    }else{
+        console.log('currentuser', this.state.currentUser) 
+        console.log('currentuser.name', this.state.currentUser.name) 
+        console.log('login function fired');
+        axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+        console.log('this is userStocklist info: ', result.data);
+          let companylist = result.data.listcontents.split(',')
+          let newlist =[]
+          companylist.forEach((e)=>{
+          newlist.push(e)})
+          console.log('this is new list', newlist); //여기까지는 문제 없음
+          this.setState({newloading: newlist})
+          console.log('this is state.newloading', this.state.newloading);
+        })
+    }
+
+    }, 1000);
+
+}
+
+
+ 
+  deleteStockList(){
+  console.log('deleteStockList fired');
+  axios.post('http://localhost:3333/stock/deletelist',{listname:"listname"}, {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+    console.log('delete completed')
+  })
+}
+
+
+
+gettingStockList(){ //getting user's favorit stock list
+
+    console.log('gettingStockList fired');
+
+    axios.get('http://localhost:3333/stock/mylist', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is favorite Stock List info: ', result.data);
+    })
+
+  }
+
+  
+
+ //about getting data from server 
+//  deleteUserStock(){
+
+//   console.log('deleteUserStock fired');
+//   axios.post('http://localhost:3333/stock/deletestock', {aa:"tst1"}, {withCredentials: true}).then((result)=>{ //need option?
+//     console.log('This is deleteUserStock result: ', result);
+//   })
+// }
+
+ 
+
 
   addingStockList() {
     console.log("addingStockList fired");
@@ -175,28 +246,15 @@ class App extends React.Component {
       });
   }
 
-  gettingUserStock() {
-    //getting stocks that user added.
-    console.log("gettingUserStock fired");
-
-    axios
-      .get("http://localhost:3333/stock/mystock", { withCredentials: true })
-      .then(result => {
-        //need option?
-        console.log("this is userStock info: ", result.data);
-      });
+  gettingUserInfo(){ //getting user info
+    console.log('userinfo fired');
+    axios.get('http://localhost:3333/user/info', {withCredentials: true}).then((result)=>{ //need option?
+      console.log('This is the user info: ', result.data);
+      this.setState({currentUser: result.data })
+    })
+    
   }
 
-  gettingUserInfo() {
-    //getting user info
-    console.log("userinfo fired");
-    axios
-      .get("http://localhost:3333/user/info", { withCredentials: true })
-      .then(result => {
-        //need option?
-        console.log("This is the user info: ", result.data);
-      });
-  }
   //////////////////////////////REST API END ////////////////////////////////////////////////////////////////////////
 
   clickMenuDropDown() {
@@ -207,8 +265,21 @@ class App extends React.Component {
 
   logout() {
     console.log("logging out");
+    ///working on
     this.setState({ currentUser: null });
-  }
+    
+    axios.get('http://localhost:3333/auth/logout', {withCredentials: true}).then((result)=>{ //need option?
+    console.log('This is deleteUserStock result: ', result);
+    console.log('delete completed')
+    console.log('logout fired');
+  })
+  
+  // window.location.reload(true); 
+  // console.log('refresh fired');
+}
+
+
+  
 
   login() {
     let path = `/login`;
@@ -244,6 +315,17 @@ class App extends React.Component {
     };
   }
 
+////main code ////main code ////main code 
+//this was for first loading
+
+
+//this was for first loading
+
+
+  
+
+
+///////////main code ////main code ////main code 
   async addStockToList(e) {
     e.preventDefault();
     console.log("addstock list fired");
@@ -255,7 +337,7 @@ class App extends React.Component {
 
     //   this.setState({
     //     stocks: result.data
-    //   });
+    //   }); 
 
     const stock = await this.fetchStockDetailsFromAPI(this.state.symbol);
     // console.log('this is stock list', stock)
@@ -294,15 +376,7 @@ class App extends React.Component {
     });
   }
 
-  async componentDidMount() {
-    const result = await axios.get(
-      serverTop10Companies("googl,aapl,msft,fb,dis,amzn,baba,jnj,brk.a,jpm")
-    );
-
-    this.setState({
-      stocks: result.data
-    });
-  }
+  
 
   deleteStock = (index) => {
     const stocks = Object.assign([], this.state.stocks);
