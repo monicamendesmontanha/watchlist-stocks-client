@@ -59,8 +59,7 @@ class BarChart extends Component {
 
   render() {
     const periods = ["1d", "1m", "3m", "6m", "1y", "2y", "5y"];
-    console.log(periods[0]);
-    if (periods[0])
+  
       return (
         <>
           <div className="chart-container">

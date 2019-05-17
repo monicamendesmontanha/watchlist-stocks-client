@@ -304,7 +304,7 @@ class App extends React.Component {
     });
   }
 
-  deleteStock = (index, e) => {
+  deleteStock = (index) => {
     const stocks = Object.assign([], this.state.stocks);
     stocks.splice(index, 1);
     this.setState({ stocks: stocks });
