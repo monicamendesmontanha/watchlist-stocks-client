@@ -7,6 +7,12 @@ $med-grey: #c5c6c7;
 $light-grey: #66fcf1;
 
 //Media Query Mixins
+@mixin mediaXSm {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+
 @mixin mediaSm {
   @media screen and (max-width: 500px) {
     @content;
