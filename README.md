@@ -1,5 +1,8 @@
-# Project #2: Stock Watchlist by React
-This is our second project using React and Node.js
+# Project #2: Stock Watch List
+This is our project using React and Node.js
+
+[Link to live](https://monicamendesmontanha.github.io/watchlist-stocks-client)
+
 
 ---
 
