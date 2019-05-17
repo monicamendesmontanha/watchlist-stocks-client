@@ -6,10 +6,10 @@ import TradingViewWidget, { Themes } from "react-tradingview-widget";
 
 const WatchList = props => (
   <div>
-    {props.stocks.map(stock => {
+    {props.stocks.map((stock, index) => {
       return (
         <div key={stock.symbol} className="item">
-          <img className="del-icon" src={del} alt="" onClick={props.delStock} />
+          <img className="del-icon" src={del} alt="" onClick={() => props.delStock(index)} />
 
           <div className="stock-logo">
             <img className="stock-logo" alt="" src={stock.symbol === 'GOOGL' ? `http://logo.clearbit.com/googl.com` : `https://storage.googleapis.com/iex/api/logos/${stock.symbol}.png`} />
@@ -17,7 +17,6 @@ const WatchList = props => (
 
           <div className="symbol_name">
             <div className="symbol">{stock.symbol}</div>
-            <div className="name">{stock.companyName}</div>
           </div>
           <div className="wiget">
             <TradingViewWidget
