@@ -17,7 +17,6 @@ const WatchList = props => (
 
           <div className="symbol_name">
             <div className="symbol">{stock.symbol}</div>
-            <div className="name">{stock.companyName}</div>
           </div>
           <div className="wiget">
             <TradingViewWidget
