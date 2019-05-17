@@ -78,7 +78,10 @@ class Login extends Component {
         console.log("getting info fired");
         // this.gettingUserInfo()
       });
-    this.props.history.push("/");
+      setTimeout(()=>{
+        this.props.history.push("/");
+      }, 1000)
+    
   }
 
   ////// async
