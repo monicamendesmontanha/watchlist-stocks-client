@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/watchlist-stocks-client/static/css/main.9a630085.chunk.css",
-    "main.js": "/watchlist-stocks-client/static/js/main.cf284c5d.chunk.js",
-    "main.js.map": "/watchlist-stocks-client/static/js/main.cf284c5d.chunk.js.map",
+    "main.css": "/watchlist-stocks-client/static/css/main.8e83c3fb.chunk.css",
+    "main.js": "/watchlist-stocks-client/static/js/main.e613b084.chunk.js",
+    "main.js.map": "/watchlist-stocks-client/static/js/main.e613b084.chunk.js.map",
     "runtime~main.js": "/watchlist-stocks-client/static/js/runtime~main.16778ea8.js",
     "runtime~main.js.map": "/watchlist-stocks-client/static/js/runtime~main.16778ea8.js.map",
-    "static/js/2.940f64ee.chunk.js": "/watchlist-stocks-client/static/js/2.940f64ee.chunk.js",
-    "static/js/2.940f64ee.chunk.js.map": "/watchlist-stocks-client/static/js/2.940f64ee.chunk.js.map",
+    "static/js/2.23b04edb.chunk.js": "/watchlist-stocks-client/static/js/2.23b04edb.chunk.js",
+    "static/js/2.23b04edb.chunk.js.map": "/watchlist-stocks-client/static/js/2.23b04edb.chunk.js.map",
     "index.html": "/watchlist-stocks-client/index.html",
-    "precache-manifest.dbe2c97bec31765d29507231e10e82b2.js": "/watchlist-stocks-client/precache-manifest.dbe2c97bec31765d29507231e10e82b2.js",
+    "precache-manifest.36b163d16b5150bc0039bd7e9ecff7b8.js": "/watchlist-stocks-client/precache-manifest.36b163d16b5150bc0039bd7e9ecff7b8.js",
     "service-worker.js": "/watchlist-stocks-client/service-worker.js",
-    "static/css/main.9a630085.chunk.css.map": "/watchlist-stocks-client/static/css/main.9a630085.chunk.css.map",
+    "static/css/main.8e83c3fb.chunk.css.map": "/watchlist-stocks-client/static/css/main.8e83c3fb.chunk.css.map",
+    "static/media/del.svg": "/watchlist-stocks-client/static/media/del.22589a55.svg",
     "static/media/grav.png": "/watchlist-stocks-client/static/media/grav.2f1629cc.png",
     "static/media/home.svg": "/watchlist-stocks-client/static/media/home.4bb5e575.svg",
+    "static/media/info.svg": "/watchlist-stocks-client/static/media/info.9feaa17e.svg",
     "static/media/search.svg": "/watchlist-stocks-client/static/media/search.45286e8e.svg",
     "static/media/stocklogo.svg": "/watchlist-stocks-client/static/media/stocklogo.b73a3ac8.svg"
   }
