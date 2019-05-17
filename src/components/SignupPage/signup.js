@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./Signup.scss";
+import "./signup.scss";
 const SERVER_URL = "http://localhost:3333/auth/join";
 class Signup extends Component {
   constructor(props) {
