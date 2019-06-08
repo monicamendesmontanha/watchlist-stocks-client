@@ -10,7 +10,7 @@
     "@vx/shape": "0.0.184",
     "@vx/tooltip": "0.0.184",
     "anychart-react": "^1.4.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "chart.js": "^2.8.0",
     "d3-array": "^2.0.3",
     "d3-time-format": "^2.1.3",
